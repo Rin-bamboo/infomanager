@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>社員一覧表示</title>
+	</head>
+	<body>
+		<div>社員一覧</div>
+		<table>
+			<tr>
+				<th>社員番号</th>
+				<th>社員名</th>
+				<th>社員名＜カナ＞</th>
+			</tr>
+			<tr th:each = "emp : ${emps}">
+				<td th:text = "{emp.empId}"></td>
+				<td th:text = "{emp.empName}"></td>
+				<td th:text = "{emp.empNameKana}"></td>
+
+
+			</tr>
+
+		</table>
+	</body>
+</html>
