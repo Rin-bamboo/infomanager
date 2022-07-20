@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "emp_tb")
+@Table(name = "empTb")
 public class EmpTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emps_gen")
