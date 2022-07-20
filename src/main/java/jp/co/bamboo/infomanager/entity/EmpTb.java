@@ -10,8 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "empTb")
-
-
 public class EmpTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emps_gen")
@@ -26,47 +24,10 @@ public class EmpTb {
 	@Column
 	private String empNameKana;
 
-	/**
-	 * @return empId
-	 */
-	public Integer getEmpId() {
-		return empId;
-	}
+	//誕生日
+	@Column
+	private String barthday;
 
-	/**
-	 * @param empId セットする empId
-	 */
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
-	}
-
-	/**
-	 * @return empName
-	 */
-	public String getEmpName() {
-		return empName;
-	}
-
-	/**
-	 * @param empName セットする empName
-	 */
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
-
-	/**
-	 * @return empNameKana
-	 */
-	public String getEmpNameKana() {
-		return empNameKana;
-	}
-
-	/**
-	 * @param empNameKana セットする empNameKana
-	 */
-	public void setEmpNameKana(String empNameKana) {
-		this.empNameKana = empNameKana;
-	}
 
 
 
