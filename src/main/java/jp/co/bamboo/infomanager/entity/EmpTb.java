@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "empTb")
+@Table(name = "emp_tb")
 public class EmpTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emps_gen")
@@ -27,6 +27,65 @@ public class EmpTb {
 	//誕生日
 	@Column
 	private String barthday;
+
+
+
+	/**
+	 * @return empId
+	 */
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	/**
+	 * @param empId セットする empId
+	 */
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+	/**
+	 * @return empName
+	 */
+	public String getEmpName() {
+		return empName;
+	}
+
+	/**
+	 * @param empName セットする empName
+	 */
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	/**
+	 * @return empNameKana
+	 */
+	public String getEmpNameKana() {
+		return empNameKana;
+	}
+
+	/**
+	 * @param empNameKana セットする empNameKana
+	 */
+	public void setEmpNameKana(String empNameKana) {
+		this.empNameKana = empNameKana;
+	}
+
+	/**
+	 * @return barthday
+	 */
+	public String getBarthday() {
+		return barthday;
+	}
+
+	/**
+	 * @param barthday セットする barthday
+	 */
+	public void setBarthday(String barthday) {
+		this.barthday = barthday;
+	}
+
 
 
 

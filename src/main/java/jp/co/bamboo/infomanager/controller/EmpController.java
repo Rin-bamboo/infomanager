@@ -12,12 +12,11 @@ import jp.co.bamboo.infomanager.repository.EmpRepository;
 public class EmpController {
 
 	@Autowired
-	EmpRepository repository;
+	EmpRepository empRepository;
 
 	@RequestMapping("/emps/findAll")
 	public String showEmpList(Model model) {
-		model.addAttribute("emps", repository.findAll());
+		model.addAttribute("emps", empRepository.findAll());
 		return "emps/emp_list";
 		}
-
 }
