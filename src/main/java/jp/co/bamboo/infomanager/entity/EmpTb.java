@@ -1,5 +1,7 @@
 package jp.co.bamboo.infomanager.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,27 @@ public class EmpTb {
 	@Column
 	private String barthday;
 
+	//電話番号
+	@Column
+	private String telNo;
+
+	//緊急電話番号
+	@Column
+	private String emgTelNo;
+
+	//郵便番号
+	@Column
+	private String addressNo;
+
+	//住所
+	@Column
+	private String address;
+
+	//入社日
+	@Column
+	private Date joinDate;
+
+	//
 
 
 	/**

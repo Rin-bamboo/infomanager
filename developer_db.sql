@@ -25,7 +25,9 @@ CREATE TABLE emp_tb(
     insert_date     DATE,
     update_date     DATE
     );
-    
+
+select emptb0_.emp_id as emp_id1_0_, emptb0_.barthday as barthday2_0_, emptb0_.emp_name as emp_name3_0_, emptb0_.emp_name_kana as emp_name_kana4_0_ from emp_tb emptb0_;
+
 SELECT * FROM emp_tb;
 
 --シーケンス作成
@@ -79,7 +81,7 @@ SELECT SYS_GUID() FROM DUAL;
 
 SELECT * FROM emp_tb
 WHERE emp_id = 
-(SELECT emp_id FROM surrogete_key_tb WHERE surrogete_key = 'F1245D0236584512ABBDCC94A568BC0A');
+(SELECT emp_id FROM surrogete_key_tb WHERE surrogete_key = 'F72699E351DC4E549876610547D037A2');
 
 UPDATE surrogete_key_tb SET surrogete_key = SYS_GUID(),update_date = sysdate, issue_date = sysdate WHERE emp_id = '1';
 --サロゲートキー解説

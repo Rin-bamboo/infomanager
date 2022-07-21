@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymepeaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<div>社員情報</div>
+
+	<table>
+		<tr>
+			<td>社員番号</td>
+			<td th:text = ${emp.empId}></td>
+		</tr>
+		<tr>
+			<td>社員名（カナ）</td>
+			<td th:text = ${emp.empNameKana}></td>
+		</tr>
+		<tr>
+			<td>社員名</td>
+			<td th:text = ${emp.empName}></td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

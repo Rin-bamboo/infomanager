@@ -3,6 +3,7 @@ package jp.co.bamboo.infomanager.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.bamboo.infomanager.repository.EmpRepository;
@@ -18,5 +19,14 @@ public class EmpController {
 	public String showEmpList(Model model) {
 		model.addAttribute("emps", empRepository.findAll());
 		return "emps/emp_list";
-		}
+	}
+
+	@RequestMapping("/emps/emphow/{empId}")
+	public String shoEmp(@PathVariable int empId,Model empModel) {
+		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
+
+		return "emps/emp_show";
+	}
+
+
 }

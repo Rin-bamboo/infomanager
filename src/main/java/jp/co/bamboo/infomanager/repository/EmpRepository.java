@@ -8,4 +8,5 @@ import jp.co.bamboo.infomanager.entity.EmpTb;
 public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 
 
+
 }
