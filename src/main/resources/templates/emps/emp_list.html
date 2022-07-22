@@ -6,14 +6,16 @@
 	</head>
 	<body>
 		<div>社員一覧</div>
+		<a th:href = "@{/emps/create/emp}">新規登録</a>
 		<table>
+
 			<tr>
 				<th>社員番号</th>
 				<th>社員名</th>
 				<th>社員名＜カナ＞</th>
 			</tr>
-			<tr th:each = "emp : ${emps}">
-				<td th:text = "${emp.empId}"></td>
+			<tr  th:each = "emp : ${emps}">
+				<td ><a th:href = "@{/emps/empshow/} + ${emp.empId}" > [[${emp.empId}]] </a></td>
 				<td th:text = "${emp.empName}"></td>
 				<td th:text = "${emp.empNameKana}"></td>
 			</tr>

@@ -1,24 +1,10 @@
-package jp.co.bamboo.infomanager.entity;
+package jp.co.bamboo.infomanager.empForm;
 
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-
-@Entity
-@Table(name = "empTb")
-public class EmpTb {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emps_gen")
-	@SequenceGenerator(name = "seq_emps_gen", sequenceName = "seq_emp_id",allocationSize = 1)
-	private Integer empId;
-
+public class EmpForm {
 	//社員名
 	@Column
 	private String empName;
@@ -29,7 +15,7 @@ public class EmpTb {
 
 	//誕生日
 	@Column
-	private String barthday;
+	private String birthday;
 
 	//電話番号
 	@Column
@@ -47,8 +33,6 @@ public class EmpTb {
 	@Column
 	private String address;
 
-
-	//メールアドレス
 	@Column
 	private String mailAddress;
 
@@ -85,20 +69,6 @@ public class EmpTb {
 	private Date updateDate;
 
 	/**
-	 * @return empId
-	 */
-	public Integer getEmpId() {
-		return empId;
-	}
-
-	/**
-	 * @param empId セットする empId
-	 */
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
-	}
-
-	/**
 	 * @return empName
 	 */
 	public String getEmpName() {
@@ -129,15 +99,15 @@ public class EmpTb {
 	/**
 	 * @return barthday
 	 */
-	public String getBarthday() {
-		return barthday;
+	public String getBirthday() {
+		return birthday;
 	}
 
 	/**
 	 * @param barthday セットする barthday
 	 */
-	public void setBarthday(String barthday) {
-		this.barthday = barthday;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	/**
@@ -321,9 +291,6 @@ public class EmpTb {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-
-
-
 
 
 }

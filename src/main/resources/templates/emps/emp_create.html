@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymepeaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div>新規社員登録</div>
+		<form method = "post" th:action = "@{/emps/create/complete}">
+			<table>
+				<tr>
+					<td>名前＜カナ＞：</td>
+					<td><input type="text" name = "empNameKana"/></td>
+				</tr>
+				<tr>
+					<td>名前：</td>
+					<td><input type="text" name = "empName"/></td>
+				</tr>
+				<tr>
+					<td>誕生日：</td>
+					<td><input type="date" name = "birthday"/></td>
+				</tr>
+				<tr>
+					<td>電話番号：</td>
+					<td><input type="tel" name = "telNo"/></td>
+				</tr>
+				<tr>
+					<td>緊急電話番号：</td>
+					<td><input type="tel" name = "emgTelNo"/></td>
+				</tr>
+				<tr>
+					<td>郵便番号：</td>
+					<td><input type="text" name = "addressNo"/></td>
+				</tr>
+				<tr>
+					<td>住所：</td>
+					<td><input type="text" name = "address"/></td>
+				</tr>
+				<tr>
+					<td>メールアドレス：</td>
+					<td><input type="email" name = "mailAddress"/></td>
+				</tr>
+				<tr>
+					<td>最寄りバス停：</td>
+					<td><input type="text" name = "busStation"/></td>
+				</tr>
+				<tr>
+					<td>最寄り駅：</td>
+					<td><input type="text" name = "station"/></td>
+				</tr>
+				<tr>
+					<td>入社日：</td>
+					<td><input type="date" name = "joinDate"/></td>
+				</tr>
+
+			</table>
+			<input type = "submit" value = "登録"/>
+		</form>
+	</body>
+</html>
