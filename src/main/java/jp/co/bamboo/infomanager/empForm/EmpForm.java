@@ -292,5 +292,4 @@ public class EmpForm {
 		this.updateDate = updateDate;
 	}
 
-
 }

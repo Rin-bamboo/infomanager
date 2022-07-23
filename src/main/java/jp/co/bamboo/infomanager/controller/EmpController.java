@@ -19,12 +19,14 @@ public class EmpController {
 	@Autowired
 	EmpRepository empRepository;
 
+	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
 	public String showEmpList(Model model) {
 		model.addAttribute("emps", empRepository.findAllByOrderByEmpIdAsc());
 		return "emps/emp_list";
 	}
 
+	//社員名あいまい検索
 	@RequestMapping(path = "/emps/empnamefind", method = RequestMethod.GET)
 	public String findEmpName(String empName,Model empModel) {
 		if (empName == null || "".equals(empName) ){
@@ -34,6 +36,7 @@ public class EmpController {
 		return "emps/emp_list";
 	}
 
+	//社員情報詳細表示
 	@RequestMapping("/emps/empshow/{empId}")
 	public String shoEmp(@PathVariable int empId,Model empModel) {
 		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
@@ -41,11 +44,13 @@ public class EmpController {
 		return "emps/emp_show";
 	}
 
+	//社員新規登録画面表示
 	@RequestMapping("/emps/create/emp")
 	public String createEmp() {
 		return "emps/emp_create";
 	}
 
+	//社員新規登録
 	@RequestMapping(path = "/emps/create/complete", method = RequestMethod.POST)
 	public String cmpleteCreateEmp(EmpForm empForm) {
 		Date now = new Date();
@@ -66,25 +71,16 @@ public class EmpController {
 		empRepository.save(emp);
 
 		return "redirect:/emps/empshow/" + emp.getEmpId();
-		//"redirect:/emps/empshow/" + emp.getEmpId();
-
 
 	}
 
-
+	//社員情報編集
 	@RequestMapping("/emps/empedit/{empId}")
 	public String editEmp(@PathVariable int empId,Model empModel) {
 		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
 
 		return "emps/emp_edit";
 	}
-
-//編集フォームの作成
-//	@RequestMapping("/emp/edit/{empId}")
-//	public String editEmp(@PathVariable int empId, EmpForm empform) {
-
-//		Emp
-//	}
 
 
 }
