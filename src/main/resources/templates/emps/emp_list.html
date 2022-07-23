@@ -5,8 +5,15 @@
 		<title>社員一覧表示</title>
 	</head>
 	<body>
-		<div>社員一覧</div>
-		<a th:href = "@{/emps/create/emp}">新規登録</a>
+		<div><a th:href = "@{/emps/findAll}">社員一覧</a></div>
+
+			<a th:href = "@{/emps/create/emp}">新規登録</a>
+
+	 	<form th:action = "@{/emps/empnamefind/}">
+			<input type="text" name = "empName"/>
+			<input type = "submit" value = "検索"/>
+		</form>
+
 		<table>
 
 			<tr>

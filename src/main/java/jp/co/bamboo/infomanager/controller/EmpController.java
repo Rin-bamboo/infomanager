@@ -21,7 +21,16 @@ public class EmpController {
 
 	@RequestMapping("/emps/findAll")
 	public String showEmpList(Model model) {
-		model.addAttribute("emps", empRepository.findAll());
+		model.addAttribute("emps", empRepository.findAllByOrderByEmpIdAsc());
+		return "emps/emp_list";
+	}
+
+	@RequestMapping(path = "/emps/empnamefind", method = RequestMethod.GET)
+	public String findEmpName(String empName,Model empModel) {
+		if (empName == null || "".equals(empName) ){
+			return "redirect:/emps/findAll";
+		}
+		empModel.addAttribute("emps", empRepository.findByEmpNameLikeOrderByEmpIdAsc("%" + empName +"%"));
 		return "emps/emp_list";
 	}
 

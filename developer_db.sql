@@ -8,7 +8,7 @@ CREATE TABLE emp_tb(
     emp_id          NUMBER(10)    PRIMARY KEY,
     emp_name        VARCHAR2(30)    NOT NULL,
     emp_name_kana   VARCHAR2(60)    NOT NULL,
-    barthday        DATE           NOT NULL,
+    barthday        DATE            NOT NULL,
     tel_no          VARCHAR2(15)    NOT NULL,
     emg_tel_no      VARCHAR2(15)    NOT NULL,
     address_no      VARCHAR2(8)     NOT NULL,
