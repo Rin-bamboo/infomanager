@@ -1,8 +1,4 @@
-select emptb0_.emp_id as emp_id1_0_, emptb0_.barthday as barthday2_0_, emptb0_.emp_name as emp_name3_0_, emptb0_.emp_name_kana as emp_name_kana4_0_ from emp_tb emptb0_;
-
 --社員テーブル作成
-
-DROP TABLE emp_tb;
 
 CREATE TABLE emp_tb(
     emp_id          NUMBER(10)    PRIMARY KEY,
@@ -26,6 +22,10 @@ CREATE TABLE emp_tb(
 
 SELECT * FROM emp_tb;
 
+--社員テーブル削除
+DROP TABLE emp_tb;
+
+
 --シーケンス作成
 CREATE SEQUENCE seq_emp_id
 START WITH 1
@@ -34,7 +34,7 @@ NOCACHE;
 --シーケンスの削除
 DROP SEQUENCE seq_emp_id;
 
---社員データ作成
+--社員データ削除
 DELETE FROM emp_tb;
 
 --社員テストデータの作成
@@ -46,13 +46,11 @@ INSERT INTO emp_tb VALUES(seq_emp_id.NEXTVAL,'三島　咲','ミシマ　サキ','2000/10/
 INSERT INTO emp_tb VALUES(seq_emp_id.NEXTVAL,'山本　翔','ヤマモト　カケル','1999/8/5','080-1111-6666','03-2222-6666','243-0033','神奈川県厚木市温水1-2-6','e-mail6@mail.com','2022/7/1','神奈川バス６','厚木６','','','',sysdate,sysdate);
 INSERT INTO emp_tb VALUES(seq_emp_id.NEXTVAL,'鬼瓦　十兵衛','オニガワラ　ジュウベイ','1936/10/4','080-1111-7777','03-2222-7777','243-0033','神奈川県厚木市温水1-2-7','e-mail7@mail.com','1956/3/1','神奈川バス７','厚木７','2000/1/1','','1',sysdate,sysdate);
 
-INSERT INTO emp_tb VALUES(seq_emp_id.NEXTVAL,'小宮山　太郎','コミヤヤマ　タロウ','1998/10/4','080-1111-8888','03-2222-7777','243-0033','神奈川県厚木市温水1-2-8','2013/3/1','神奈川バス8','厚木8','','','',sysdate,sysdate);
 
-DELETE FROM emp_tb WHERE emp_id = '8';
-
---サロゲートキーの作成
+--サロゲートキーテーブルの削除
 DROP TABLE surrogete_key_tb;
 
+--サロゲートキーの作成
 CREATE TABLE surrogete_key_tb(
     emp_id          NUMBER(10) NOT NULL REFERENCES emp_tb(emp_id),
     surrogete_key   RAW(16) DEFAULT SYS_GUID(),
@@ -61,11 +59,9 @@ CREATE TABLE surrogete_key_tb(
     update_date     Date
 );
 
---サロゲートキーテーブルの削除
+--サロゲートキーデータの削除
 DELETE FROM surrogete_key_tb;
 
-SELECT * FROM surrogete_key_tb
-WHERE emp_id = '1';
 
 --サロゲートキーテストデータ作成
 INSERT INTO surrogete_key_tb VALUES('1',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
@@ -76,12 +72,43 @@ INSERT INTO surrogete_key_tb VALUES('5',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
 INSERT INTO surrogete_key_tb VALUES('6',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
 INSERT INTO surrogete_key_tb VALUES('7',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
 
-SELECT SYS_GUID() FROM DUAL;
 
-SELECT * FROM emp_tb
-WHERE emp_id = 
-(SELECT emp_id FROM surrogete_key_tb WHERE surrogete_key = '43780E4B30BB4BCC88CF3F85243C7065');
-
-UPDATE surrogete_key_tb SET surrogete_key = SYS_GUID(),update_date = sysdate, issue_date = sysdate WHERE emp_id = '1';
 --サロゲートキー解説
 --https://www.web-dev-qa-db-ja.com/ja/oracle/oracle%E3%81%A7guid%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%EF%BC%9F/969718678/
+
+--部署情報
+
+CREATE TABLE dep_tb(
+    dep_id      NUMBER(10)       NOT NULL,
+    dep_name    VARCHAR2(30)    NOT NULL,
+    insert_date DATE,
+    update_date DATE
+);
+DROP TABLE emp_tb;
+
+
+--シーケンス作成
+CREATE SEQUENCE seq_dep_id
+START WITH 1
+NOCACHE;
+
+--部署データ作成
+INSERT INTO dep_tb VALUES(seq_dep_id.NEXTVAL,'人事部',SYSDATE,SYSDATE);
+INSERT INTO dep_tb VALUES(seq_dep_id.NEXTVAL,'総務部',SYSDATE,SYSDATE);
+INSERT INTO dep_tb VALUES(seq_dep_id.NEXTVAL,'経理部',SYSDATE,SYSDATE);
+INSERT INTO dep_tb VALUES(seq_dep_id.NEXTVAL,'営業部',SYSDATE,SYSDATE);
+
+--社員・部署中間テーブル作成
+
+CREATE TABLE emp_dep_tb(
+    link_emp_dep_id NUMBER  PRIMARY KEY,
+    emp_id          NUMBER  NOT NULL REFERENCES emp_tb(emp_id),
+    dep_id          NUMBER  NOT NULL REFERENCES dep_tb(dep_id),
+    insert_date     DATE,
+    update_date     DATE
+);
+
+--シーケンス作成
+CREATE SEQUENCE link_emp_dep_id
+START WITH 1
+NOCACHE;

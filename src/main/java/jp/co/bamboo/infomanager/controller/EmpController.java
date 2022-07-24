@@ -12,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.bamboo.infomanager.empForm.EmpForm;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
+import jp.co.bamboo.infomanager.repository.LinkEmpDepIdRepository;
 
 @Controller
 public class EmpController {
 
+	//社員情報リポジトリとつなげる
 	@Autowired
 	EmpRepository empRepository;
+
+	//社員・部署テーブルのリポジトリとつなげる
+	@Autowired
+	LinkEmpDepIdRepository ledRepository;
 
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
