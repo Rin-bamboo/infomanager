@@ -13,12 +13,14 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "emp_dep_tb")
+@Table(name = "EmpDepTb")
 public class EmpDepTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="link_emp_dep_id_gen")
 	@SequenceGenerator(name="link_emp_dep_id_gen", sequenceName = "link_emp_dep_id", allocationSize=1)
 	private Integer linkEmpDepId;
+
+
 
 	@ManyToOne
 	@JoinColumn(name = "emp_id", referencedColumnName = "empId")

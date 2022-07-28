@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "emp_tb")
+@Table(name = "depTb")
 public class DepTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_dep_id_gen")
@@ -24,6 +24,17 @@ public class DepTb {
 
 	@Column
 	private String updateDate;
+
+	/*バグ発生でコメントアウト　外部参照でうまく使いたい
+	@OneToMany
+	@JoinTable
+	(
+	  name="emp_dep_tb",
+	  joinColumns = {@JoinColumn(name="dep_id", referencedColumnName="dep_id")},
+	  inverseJoinColumns = {@JoinColumn(name="emp_id", referencedColumnName="emp_id", unique=true)}
+	)
+	private List<EmpTb> empList;*/
+
 
 	/**
 	 * @return depId
@@ -80,6 +91,7 @@ public class DepTb {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
 
 
 

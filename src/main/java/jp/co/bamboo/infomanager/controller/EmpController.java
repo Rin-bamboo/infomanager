@@ -46,7 +46,6 @@ public class EmpController {
 	@RequestMapping("/emps/empshow/{empId}")
 	public String shoEmp(@PathVariable int empId,Model empModel) {
 		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
-
 		return "emps/emp_show";
 	}
 

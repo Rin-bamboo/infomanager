@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -52,6 +54,11 @@ public class EmpTb {
 	@Column
 	private String mailAddress;
 
+	//部署ID
+	@ManyToOne
+	@JoinColumn(name = "depId", referencedColumnName = "depId")
+	private DepTb depTb;
+
 	//入社日
 	@Column
 	private String joinDate;
@@ -83,6 +90,16 @@ public class EmpTb {
 	//更新日
 	@Column
 	private Date updateDate;
+
+	/*バグ発生でコメントアウト　外部参照でうまく使いたい
+	@OneToMany
+	@JoinTable
+	(
+	  name="emp_dep_tb",
+	  joinColumns = {@JoinColumn(name="emp_id", referencedColumnName="emp_id")},
+	  inverseJoinColumns = {@JoinColumn(name="dep_id", referencedColumnName="dep_id", unique=true)}
+	 )
+	 private List<DepTb> depList;*/
 
 	/**
 	 * @return empId
@@ -320,6 +337,20 @@ public class EmpTb {
 	 */
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	/**
+	 * @return depTb
+	 */
+	public DepTb getDepTb() {
+		return depTb;
+	}
+
+	/**
+	 * @param depTb セットする depTb
+	 */
+	public void setDepTb(DepTb depTb) {
+		this.depTb = depTb;
 	}
 
 
