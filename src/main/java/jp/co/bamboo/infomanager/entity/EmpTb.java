@@ -54,7 +54,7 @@ public class EmpTb {
 	@Column
 	private String mailAddress;
 
-	//部署ID
+	//部署ID結合
 	@ManyToOne
 	@JoinColumn(name = "depId", referencedColumnName = "depId")
 	private DepTb depTb;

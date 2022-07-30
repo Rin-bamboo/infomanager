@@ -1,6 +1,7 @@
 package jp.co.bamboo.infomanager.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.bamboo.infomanager.empForm.EmpForm;
+import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
-import jp.co.bamboo.infomanager.repository.LinkEmpDepIdRepository;
 
 @Controller
 public class EmpController {
@@ -21,9 +22,6 @@ public class EmpController {
 	@Autowired
 	EmpRepository empRepository;
 
-	//社員・部署テーブルのリポジトリとつなげる
-	@Autowired
-	LinkEmpDepIdRepository ledRepository;
 
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
@@ -41,6 +39,21 @@ public class EmpController {
 		empModel.addAttribute("emps", empRepository.findByEmpNameLikeOrderByEmpIdAsc("%" + empName +"%"));
 		return "emps/emp_list";
 	}
+
+	//社員部署検索
+	@RequestMapping(path = "/emps/empdepfind", method = RequestMethod.GET)
+	public String findDepId(int depId, Model depModel) {
+		DepTb depTb = new DepTb();
+
+		depTb.setDepId(depId);
+
+		List<EmpTb> emps = empRepository.findByDepTb(depTb);
+
+		depModel.addAttribute("emps",emps);
+
+		return "emps/emp_list";
+	}
+
 
 	//社員情報詳細表示
 	@RequestMapping("/emps/empshow/{empId}")
