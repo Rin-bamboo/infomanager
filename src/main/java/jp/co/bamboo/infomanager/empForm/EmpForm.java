@@ -68,6 +68,9 @@ public class EmpForm {
 	@Column
 	private Date updateDate;
 
+	//社員コメント
+	private String Discription;
+
 	/**
 	 * @return empName
 	 */
@@ -290,6 +293,20 @@ public class EmpForm {
 	 */
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	/**
+	 * @return discription
+	 */
+	public String getDiscription() {
+		return Discription;
+	}
+
+	/**
+	 * @param discription セットする discription
+	 */
+	public void setDiscription(String discription) {
+		Discription = discription;
 	}
 
 }

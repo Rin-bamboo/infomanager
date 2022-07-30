@@ -91,6 +91,10 @@ public class EmpTb {
 	@Column
 	private Date updateDate;
 
+	@Column
+	private String discription;
+
+
 	/*バグ発生でコメントアウト　外部参照でうまく使いたい
 	@OneToMany
 	@JoinTable
@@ -351,6 +355,20 @@ public class EmpTb {
 	 */
 	public void setDepTb(DepTb depTb) {
 		this.depTb = depTb;
+	}
+
+	/**
+	 * @return discription
+	 */
+	public String getDiscription() {
+		return discription;
+	}
+
+	/**
+	 * @param discription セットする discription
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
 	}
 
 

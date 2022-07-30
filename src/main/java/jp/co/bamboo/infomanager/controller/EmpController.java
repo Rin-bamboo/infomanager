@@ -71,6 +71,7 @@ public class EmpController {
 		emp.setBusStation(empForm.getBusStation());
 		emp.setStation(empForm.getStation());
 		emp.setJoinDate(empForm.getJoinDate());
+		emp.setDiscription(empForm.getDiscription());
 		emp.setInsertDate(now);
 		emp.setUpdateDate(now);
 		empRepository.save(emp);
