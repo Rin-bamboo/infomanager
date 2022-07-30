@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymepeaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <title>Insert title here</title>
 </head>
 <body>
 	<div>社員情報</div>
-		<a th:href = "@{/emps/findAll}">一覧へ戻る</a>
+	<a th:href="@{/emps/findAll}">一覧へ戻る</a>
 	<table>
 		<tr>
 			<td>社員番号</td>
-			<td th:text = ${emp.empId}></td>
+			<td th:text=${emp.empId}></td>
 		</tr>
 		<tr>
 			<td>社員名（カナ）</td>
-			<td th:text = ${emp.empNameKana}></td>
+			<td th:text=${emp.empNameKana}></td>
 		</tr>
 		<tr>
 			<td>社員名</td>
-			<td th:text = ${emp.empName}></td>
+			<td th:text=${emp.empName}></td>
 		</tr>
 		<tr>
 			<td>部署</td>
-			<td th:text = ${emp.depTb.depName}></td>
+			<td th:text=${emp.depTb.depName}></td>
 		</tr>
 		<tr>
 			<td>メールアドレス</td>
-			<td th:text = ${emp.mailAddress}></td>
+			<td th:text=${emp.mailAddress}></td>
 		</tr>
 		<tr>
 			<td>コメント</td>
-			<td th:text = ${emp.discription}></td>
+			<td th:text=${emp.discription}></td>
 		</tr>
 
 	</table>

@@ -12,13 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "empTb")
 public class EmpTb {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emps_gen")
-	@SequenceGenerator(name = "seq_emps_gen", sequenceName = "seq_emp_id",allocationSize = 1)
+	@SequenceGenerator(name = "seq_emps_gen", sequenceName = "seq_emp_id", allocationSize = 1)
 	private Integer empId;
 
 	//社員名
@@ -48,7 +47,6 @@ public class EmpTb {
 	//住所
 	@Column
 	private String address;
-
 
 	//メールアドレス
 	@Column
@@ -93,7 +91,6 @@ public class EmpTb {
 
 	@Column
 	private String discription;
-
 
 	/*バグ発生でコメントアウト　外部参照でうまく使いたい
 	@OneToMany
@@ -370,9 +367,5 @@ public class EmpTb {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-
-
-
-
 
 }

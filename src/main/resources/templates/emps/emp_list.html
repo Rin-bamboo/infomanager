@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymepeaf.org">
-	<head>
-		<meta charset="UTF-8" />
-		<title>社員一覧表示</title>
-	</head>
-	<body>
-		<div><a th:href = "@{/emps/findAll}">社員一覧</a></div>
+<head>
+<meta charset="UTF-8" />
+<title>社員一覧表示</title>
+</head>
+<body>
+	<div>
+		<a th:href="@{/emps/findAll}">社員一覧</a>
+	</div>
 
-			<a th:href = "@{/emps/create/emp}">新規登録</a>
+	<a th:href="@{/emps/create/emp}">新規登録</a>
 
-	 	<form th:action = "@{/emps/empnamefind/}">
-			<input type="text" name = "empName"/>
-			<input type = "submit" value = "検索"/>
-		</form>
+	<form th:action="@{/emps/empnamefind/}">
+		<input type="text" name="empName" /> <input type="submit" value="検索" />
+	</form>
 
-	 	<form th:action = "@{/emps/empdepfind/}">
-	 		<select name = "depId" >
-	 			<option value = "1">人事部</option>
-	 			<option value = "2">総務部</option>
-	 			<option value = "3">経理部</option>
-	 			<option value = "4">営業部</option>
-	 		</select>
-			<input type = "submit" value = "検索"/>
+	<form th:action="@{/emps/empdepfind/}">
+		<select name="depId">
+			<option value="1">人事部</option>
+			<option value="2">総務部</option>
+			<option value="3">経理部</option>
+			<option value="4">営業部</option>
+		</select> <input type="submit" value="検索" />
 
-		</form>
+	</form>
 
+	<table>
 
-		<table>
-
-			<tr>
-				<th>社員番号</th>
-				<th>社員名</th>
-				<th>社員名＜カナ＞</th>
-				<th colspan = 2>操作</th>
-			</tr>
-			<tr  th:each = "emp : ${emps}">
-				<td ><a th:href = "@{/emps/empshow/} + ${emp.empId}" > [[${emp.empId}]] </a></td>
-				<td th:text = "${emp.empName}"></td>
-				<td th:text = "${emp.empNameKana}"></td>
-				<td>編集</td>
-				<td>退職</td>
-			</tr>
-		</table>
-	</body>
+		<tr>
+			<th>社員番号</th>
+			<th>社員名</th>
+			<th>社員名＜カナ＞</th>
+			<th colspan=2>操作</th>
+		</tr>
+		<tr th:each="emp : ${emps}">
+			<td><a th:href="@{/emps/empshow/} + ${emp.empId}">
+					[[${emp.empId}]] </a></td>
+			<td th:text="${emp.empName}"></td>
+			<td th:text="${emp.empNameKana}"></td>
+			<td>編集</td>
+			<td>退職</td>
+		</tr>
+	</table>
+</body>
 </html>

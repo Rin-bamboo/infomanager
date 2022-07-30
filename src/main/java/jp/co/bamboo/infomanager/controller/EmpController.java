@@ -22,7 +22,6 @@ public class EmpController {
 	@Autowired
 	EmpRepository empRepository;
 
-
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
 	public String showEmpList(Model model) {
@@ -32,11 +31,11 @@ public class EmpController {
 
 	//社員名あいまい検索
 	@RequestMapping(path = "/emps/empnamefind", method = RequestMethod.GET)
-	public String findEmpName(String empName,Model empModel) {
-		if (empName == null || "".equals(empName) ){
+	public String findEmpName(String empName, Model empModel) {
+		if (empName == null || "".equals(empName)) {
 			return "redirect:/emps/findAll";
 		}
-		empModel.addAttribute("emps", empRepository.findByEmpNameLikeOrderByEmpIdAsc("%" + empName +"%"));
+		empModel.addAttribute("emps", empRepository.findByEmpNameLikeOrderByEmpIdAsc("%" + empName + "%"));
 		return "emps/emp_list";
 	}
 
@@ -49,16 +48,15 @@ public class EmpController {
 
 		List<EmpTb> emps = empRepository.findByDepTb(depTb);
 
-		depModel.addAttribute("emps",emps);
+		depModel.addAttribute("emps", emps);
 
 		return "emps/emp_list";
 	}
 
-
 	//社員情報詳細表示
 	@RequestMapping("/emps/empshow/{empId}")
-	public String shoEmp(@PathVariable int empId,Model empModel) {
-		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
+	public String shoEmp(@PathVariable int empId, Model empModel) {
+		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		return "emps/emp_show";
 	}
 
@@ -95,11 +93,10 @@ public class EmpController {
 
 	//社員情報編集
 	@RequestMapping("/emps/empedit/{empId}")
-	public String editEmp(@PathVariable int empId,Model empModel) {
-		empModel.addAttribute("emp",empRepository.getReferenceById(empId));
+	public String editEmp(@PathVariable int empId, Model empModel) {
+		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 
 		return "emps/emp_edit";
 	}
-
 
 }
