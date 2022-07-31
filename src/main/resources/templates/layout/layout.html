@@ -6,11 +6,11 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<div th:replace="~{header :: layout-header}"></div>
+		<div th:replace="~{layout/header :: layout-header}"></div>
 		<div id = "container">
-			<div th:replace="~{sidebar :: layout-sidebar}"></div>
+			<div th:replace="~{layout/sidebar :: layout-sidebar}"></div>
 			<div id = "main" th:replace="${body}"></div>
 		</div>
-		<div th:replace="~{footer :: layout-footer}"></div>
+		<div th:replace="~{layout/footer :: layout-footer}"></div>
 	</body>
 </html>
