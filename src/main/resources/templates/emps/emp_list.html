@@ -31,7 +31,10 @@
 			<th>社員番号</th>
 			<th>社員名</th>
 			<th>社員名＜カナ＞</th>
-			<th colspan=2>操作</th>
+			<th>操作</th>
+		</tr>
+		<tr th:if="${emps.size <= 0}" >
+			<td colspan=5>検索結果は0件でした</td>
 		</tr>
 		<tr th:each="emp : ${emps}">
 			<td><a th:href="@{/emps/empshow/} + ${emp.empId}">
@@ -39,7 +42,6 @@
 			<td th:text="${emp.empName}"></td>
 			<td th:text="${emp.empNameKana}"></td>
 			<td>編集</td>
-			<td>退職</td>
 		</tr>
 	</table>
 </body>
