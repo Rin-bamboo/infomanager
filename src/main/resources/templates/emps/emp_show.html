@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymepeaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="~{layout/layout :: layout(~{::body/content()})}">
 <head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<title>社員管理システム</title>
 </head>
 <body>
+<main>
 	<div>社員情報</div>
-	<a th:href="@{/emps/findAll}">一覧へ戻る</a>
+
 	<table>
 		<tr>
 			<td>社員番号</td>
@@ -32,9 +34,7 @@
 			<td>コメント</td>
 			<td th:text=${emp.discription}></td>
 		</tr>
-
 	</table>
-
-
+</main>
 </body>
 </html>
