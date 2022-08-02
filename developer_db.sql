@@ -2,6 +2,7 @@
 
 CREATE TABLE emp_tb(
     emp_id          NUMBER(10)    PRIMARY KEY,
+    emp_admin       NUMBER(1),
     emp_name        VARCHAR2(30)    NOT NULL,
     emp_name_kana   VARCHAR2(60)    NOT NULL,
     barthday        DATE            NOT NULL,
@@ -144,3 +145,5 @@ DROP TABLE emp_dep_tb;
 
 --サロゲートキーテーブルの削除
 DROP TABLE surrogete_key_tb;
+
+

@@ -12,6 +12,19 @@
 		<form method="post" th:action="@{/emps/create/complete}">
 			<table>
 				<tr>
+					<td>管理者</td>
+					<td><input type="checkbox" /></td>
+				</tr>
+				<tr>
+					<td>部署</td>
+					<td>
+					<select name="depId">
+						<option th:each="deps: ${session.dep}"
+							th:value="${deps.depId}" th:text="${deps.depName}"></option>
+					</select>
+					</td>
+				</tr>
+				<tr>
 					<td>名前＜カナ＞：</td>
 					<td><input type="text" name="empNameKana" /></td>
 				</tr>

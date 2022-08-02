@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="~{layout/layout :: layout(~{::body/content()})}">
 	<head>
 		<meta charset="UTF-8" />
-		<title>社員情報管理システム</title>
+		<title>社員管理システム</title>
 	</head>
 	<body>
-		<h1>情報管理システムへようこそ</h1>
-		<h2>一覧表示</h2>
+		<div>
+			<div id = "flexmain">
+				<div id ="flexsub">
+					社員一覧表示
+				</div>
+				<div id ="flexsub">
+					社員情報変更
+				</div>
+				<div id ="flexsub">
+					申請関係
+				</div>
+				<div id ="flexsub">
+					項目４
+				</div>
+			</div>
+			<h2>管理者機能</h2>
+			<div id = "flexmain">
+				<div id ="flexsub">
+					社員情報管理
+				</div>
+				<div id ="flexsub">
+					承認関係
+				</div>
+				<div id ="flexsub">
+					項目３
+				</div>
+				<div id ="flexsub">
+					項目４
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

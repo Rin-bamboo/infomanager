@@ -2,19 +2,26 @@
 <meta charset="UTF-8" />
 
 <header th:fragment="layout-header">
-	<a th:href="@{/emps/findAll}">社員一覧</a>
-	<a th:href="@{/emps/create/emp}">新規登録</a>
-	<form th:action="@{/emps/empnamefind/}">
-		<input type="text" name="empName" /> <input type="submit" value="検索" />
-	</form>
 
-	<form th:action="@{/emps/empdepfind/}">
-		<select name="depId">
-			<option value="1">人事部</option>
-			<option value="2">総務部</option>
-			<option value="3">経理部</option>
-			<option value="4">営業部</option>
-		</select> <input type="submit" value="検索" />
+	<div  id = "flexheader">
+		<h1>社員情報管理システム</h1>
 
-	</form>
+<!-- 	デザイン的に使うか使わないのか決めるので、一時的にコメントアウト
+		<div id = "flexheadersub">
+			<a id = "link" th:href="@{/emps/findAll}">社員一覧</a>
+			<a id = "link" th:href="@{/emps/create/emp}">新規登録</a>
+		</div>
+		<div id = "flexheadersub">
+			<form th:action="@{/emps/empnamefind/}">
+				<input type="text" name="empName" /> <input type="submit" value="検索" />
+			</form>
+			<form th:action="@{/emps/empdepfind/}">
+				<select name="depId">
+					<option th:each="deps: ${session.dep}"
+						th:value="${deps.depId}" th:text="${deps.depName}"></option>
+				</select>
+				<input type="submit" value="検索" />
+			</form>
+		</div> -->
+	</div>
 </header>
