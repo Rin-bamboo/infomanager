@@ -5,11 +5,13 @@
 	<div>
 		<div>
 			<form th:action="@{/emps/empnamefind/}">
+				<div>社員名検索</div>
 				<input type="text" name="empName" /> <input type="submit" value="検索" />
 			</form>
 		</div>
 		<div>
 			<form th:action="@{/emps/empdepfind/}">
+				<div>部署検索</div>
 				<select name="depId">
 					<option th:each="deps: ${session.dep}"
 						th:value="${deps.depId}" th:text="${deps.depName}"></option>
@@ -17,11 +19,9 @@
 				<input type="submit" value="検索" />
 			</form>
 		</div>
+		<div>===社員機能===</div>
 		<div>
 			<a th:href="@{/emps/findAll}">社員一覧</a>
-		</div>
-		<div>
-			<a th:href="@{/emps/create/emp}">新規登録</a>
 		</div>
 	</div>
 	<ul>
@@ -33,4 +33,8 @@
 		<li>スキルシート</li>
 
 	</ul>
+	<div>===管理者機能===</div>
+	<div>
+		<a th:href="@{/emps/create/emp}">新規登録</a>
+	</div>
 </aside>

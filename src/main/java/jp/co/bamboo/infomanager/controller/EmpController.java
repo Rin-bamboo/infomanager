@@ -63,7 +63,6 @@ public class EmpController {
 	//社員新規登録画面表示
 	@RequestMapping("/emps/create/emp")
 	public String createEmp() {
-
 		return "emps/emp_create";
 	}
 
