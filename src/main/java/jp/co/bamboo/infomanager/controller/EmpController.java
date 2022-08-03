@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.bamboo.infomanager.empForm.EmpForm;
+import jp.co.bamboo.infomanager.Form.EmpForm;
 import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
+import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
 
 @Controller
@@ -21,6 +22,9 @@ public class EmpController {
 	//社員情報リポジトリとつなげる
 	@Autowired
 	EmpRepository empRepository;
+
+	@Autowired
+	DepRepository depRepository;
 
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
@@ -85,7 +89,11 @@ public class EmpController {
 		emp.setDiscription(empForm.getDiscription());
 		emp.setInsertDate(now);
 		emp.setUpdateDate(now);
+		emp.setDepTb(depRepository.getReferenceById(empForm.getDepId()));
+		emp.setEmpAdmin(empForm.getEmpAdmin());
+
 		empRepository.save(emp);
+
 
 		return "redirect:/emps/empshow/" + emp.getEmpId();
 

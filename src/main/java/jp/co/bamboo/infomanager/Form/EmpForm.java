@@ -1,76 +1,65 @@
-package jp.co.bamboo.infomanager.empForm;
+package jp.co.bamboo.infomanager.Form;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 public class EmpForm {
+
 	//社員名
-	@Column
 	private String empName;
 
 	//社員名（カナ）
-	@Column
 	private String empNameKana;
 
 	//誕生日
-	@Column
 	private String birthday;
 
 	//電話番号
-	@Column
 	private String telNo;
 
 	//緊急電話番号
-	@Column
 	private String emgTelNo;
 
 	//郵便番号
-	@Column
 	private String addressNo;
 
 	//住所
-	@Column
 	private String address;
 
-	@Column
+	//メールアドレス
 	private String mailAddress;
 
 	//入社日
-	@Column
 	private String joinDate;
 
 	//最寄りバス停
-	@Column
 	private String busStation;
 
 	//最寄り駅
-	@Column
 	private String station;
 
 	//退職日
-	@Column
 	private Date retDate;
 
 	//死亡日
-	@Column
 	private Date dieDate;
 
 	//削除フラグ
-	@Column
 	private Integer deleteFlg;
 
 	//登録日
-	@Column
 	private Date insertDate;
 
 	//更新日
-	@Column
 	private Date updateDate;
 
 	//社員コメント
 	private String Discription;
 
+	//管理者権限
+	private Integer empAdmin;
+
+	//部署ID
+	private Integer depId;
 	/**
 	 * @return empName
 	 */
@@ -308,5 +297,35 @@ public class EmpForm {
 	public void setDiscription(String discription) {
 		Discription = discription;
 	}
+
+	/**
+	 * @return empAdmin
+	 */
+	public Integer getEmpAdmin() {
+		return empAdmin;
+	}
+
+	/**
+	 * @param empAdmin セットする empAdmin
+	 */
+	public void setEmpAdmin(Integer empAdmin) {
+		this.empAdmin = empAdmin;
+	}
+
+	/**
+	 * @return depId
+	 */
+	public Integer getDepId() {
+		return depId;
+	}
+
+	/**
+	 * @param depId セットする depId
+	 */
+	public void setDepId(Integer depId) {
+		this.depId = depId;
+	}
+
+
 
 }

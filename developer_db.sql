@@ -23,6 +23,7 @@ CREATE TABLE emp_tb(
     update_date     DATE
     );
 
+ALTER TABLE emp_tb ADD emp_admin NUMBER(1);
 
 --•”ƒe[ƒuƒ‹ì¬
 

@@ -89,8 +89,12 @@ public class EmpTb {
 	@Column
 	private Date updateDate;
 
+	//社員コメント
 	@Column
 	private String discription;
+
+	@Column
+	private Integer empAdmin;
 
 	/*バグ発生でコメントアウト　外部参照でうまく使いたい
 	@OneToMany
@@ -366,6 +370,20 @@ public class EmpTb {
 	 */
 	public void setDiscription(String discription) {
 		this.discription = discription;
+	}
+
+	/**
+	 * @return empAdmin
+	 */
+	public Integer getEmpAdmin() {
+		return empAdmin;
+	}
+
+	/**
+	 * @param empAdmin セットする empAdmin
+	 */
+	public void setEmpAdmin(Integer empAdmin) {
+		this.empAdmin = empAdmin;
 	}
 
 }
