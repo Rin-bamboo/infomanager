@@ -1,4 +1,4 @@
---社員テーブル作成
+--=======================社員テーブル作成
 
 CREATE TABLE emp_tb(
     emp_id          NUMBER(10)    PRIMARY KEY,
@@ -23,7 +23,6 @@ CREATE TABLE emp_tb(
     update_date     DATE
     );
 
-ALTER TABLE emp_tb ADD emp_admin NUMBER(1);
 
 --部署テーブル作成
 
@@ -56,6 +55,16 @@ CREATE TABLE surrogete_key_tb(
 --サロゲートキー解説
 --https://www.web-dev-qa-db-ja.com/ja/oracle/oracle%E3%81%A7guid%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%EF%BC%9F/969718678/
 
+
+--ユーザー情報
+CREATE TABLE user_master_tb(
+    emp_id      NUMBER          NOT NULL REFERENCES emp_tb(emp_id),
+    login_id    VARCHAR2(60)    UNIQUE,
+    password    VARCHAR2(30)    NOT NULL,
+    insert_date DATE,
+    update_date DATE
+);
+    
 
 --==================================シーケンス作成
 
