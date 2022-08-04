@@ -4,7 +4,7 @@
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: inherit;
+
 	margin: 0;
 	padding: 0;
 }
@@ -66,13 +66,14 @@ a#link{
 }
 
 #flexsub{
+	font-size:150%;
 	margin: 20px;
 	border:3px solid #003059;
 	padding:25px;
 	background-color:#d6ecff;
 	border-radius:10px;
 	height: 20px;
-	width: 120px;
+	width: 200px;
 	text-align:center;
 }
 #flexheader{
