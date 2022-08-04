@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="~{layout/layout :: layout(~{::body/content()})}">
+	<head>
+		<meta charset="UTF-8" />
+		<title>社員管理システム</title>
+	</head>
+	<body>
+		<form class = "loginform">
+			<div id = "login">
+				<div class = "formfont">ログインID</div>
+				<input class ="logininput" type="text"/>
+			</div>
+			<div id = "password">
+				<div class = "formfont">パスワード</div>
+				<input class ="logininput" type="password"/>
+			</div>
+			<input class="btn btn--orange btn--radius" type="submit" value="ログイン" />
+		</form>
+
+
+	</body>
+</html>

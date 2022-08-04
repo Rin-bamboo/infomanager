@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import jp.co.bamboo.infomanager.repository.LinkEmpDepIdRepository;
 
 @Controller
-public class EmpDepTb {
+public class EmpDepTbController {
 	@Autowired
 	LinkEmpDepIdRepository ledRepository;
 
