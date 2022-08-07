@@ -3,13 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link th:href="@{/css/layout.css}" rel = "stylesheet"/>
-		<title>Insert title here</title>
+		<title>社員管理システム</title>
 	</head>
 
 	<body>
 		<header th:replace="~{layout/header :: layout-header}"></header>
-		<aside th:replace="~{layout/sidebar :: layout-sidebar}"></aside>
-		<main th:replace="${body}"></main>
+		<div class = "maincontents">
+			<aside th:replace="~{layout/sidebar :: layout-sidebar}"></aside>
+			<main th:replace="${body}"></main>
+		</div>
 		<footer th:replace="~{layout/footer :: layout-footer}"></footer>
 	</body>
 

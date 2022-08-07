@@ -6,11 +6,13 @@
 		<title>社員管理システム</title>
 	</head>
 	<body>
-		<div>
+		<main>
 			<div id = "flexmain">
-				<div id ="flexsub">
-					社員一覧表示
-				</div>
+				<a id ="flexsub" th:href="@{/emps/findAll}">
+					<div>
+						社員一覧
+					</div>
+				</a>
 				<div id ="flexsub">
 					社員情報変更
 				</div>
@@ -36,6 +38,6 @@
 					項目４
 				</div>
 			</div>
-		</div>
+		</main>
 	</body>
 </html>
