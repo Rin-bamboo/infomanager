@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="~{layout/layout :: layout(~{::body/content()})}">
+	<head>
+		<meta charset="UTF-8" />
+		<title>社員管理システム</title>
+	</head>
+	<body>
+
+	<main>
+		<div>新規社員登録</div>
+		<form method="post" th:action="@{/emps/create/complete}">
+			<table>
+				<tr>
+					<td>管理者</td>
+					<td><input type="checkbox" name="empAdmin" value="1" /></td>
+				</tr>
+				<tr>
+					<td>部署</td>
+					<td>
+					<select name="depId">
+						<option th:each="deps: ${session.dep}"
+							th:value="${deps.depId}" th:text="${deps.depName}"></option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>名前＜カナ＞：</td>
+					<td><input type="text" name="empNameKana" th:value = "${emp.empNameKana}" /></td>
+				</tr>
+				<tr>
+					<td>名前：</td>
+					<td><input type="text" name="empName" th:value = "${emp.empName}" /></td>
+				</tr>
+				<tr>
+					<td>誕生日：</td>
+					<td><input type="date" name="birthday" /></td>
+				</tr>
+				<tr>
+					<td>電話番号：</td>
+					<td><input type="tel" name="telNo" /></td>
+				</tr>
+				<tr>
+					<td>緊急電話番号：</td>
+					<td><input type="tel" name="emgTelNo" /></td>
+				</tr>
+				<tr>
+					<td>郵便番号：</td>
+					<td><input type="text" name="addressNo" /></td>
+				</tr>
+				<tr>
+					<td>住所：</td>
+					<td><input type="text" name="address" /></td>
+				</tr>
+				<tr>
+					<td>メールアドレス：</td>
+					<td><input type="email" name="mailAddress" /></td>
+				</tr>
+				<tr>
+					<td>最寄りバス停：</td>
+					<td><input type="text" name="busStation" /></td>
+				</tr>
+				<tr>
+					<td>最寄り駅：</td>
+					<td><input type="text" name="station" /></td>
+				</tr>
+				<tr>
+					<td>コメント：</td>
+					<td><input type="text" name="discription" /></td>
+				</tr>
+				<tr>
+					<td>入社日：</td>
+					<td><input type="date" name="joinDate" /></td>
+				</tr>
+
+			</table>
+			<input type="submit" value="登録" />
+		</form>
+	</main>
+	</body>
+</html>
