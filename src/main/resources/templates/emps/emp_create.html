@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-		th:replace="~{layout/layout :: layout(~{::body/content()})}">
-	<head>
-		<meta charset="UTF-8" />
-		<title>社員管理システム</title>
-	</head>
-	<body>
+	th:replace="~{layout/layout :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>社員管理システム</title>
+</head>
+<body>
 
 	<main>
 		<div>新規社員登録</div>
@@ -17,12 +17,10 @@
 				</tr>
 				<tr>
 					<td>部署</td>
-					<td>
-					<select name="depId">
-						<option th:each="deps: ${session.dep}"
-							th:value="${deps.depId}" th:text="${deps.depName}"></option>
-					</select>
-					</td>
+					<td><select name="depId">
+							<option th:each="deps: ${session.dep}" th:value="${deps.depId}"
+								th:text="${deps.depName}"></option>
+					</select></td>
 				</tr>
 				<tr>
 					<td>名前＜カナ＞：</td>
@@ -77,5 +75,5 @@
 			<input type="submit" value="登録" />
 		</form>
 	</main>
-	</body>
+</body>
 </html>

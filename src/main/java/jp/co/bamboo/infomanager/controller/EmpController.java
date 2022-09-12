@@ -47,13 +47,9 @@ public class EmpController {
 	@RequestMapping(path = "/emps/empdepfind", method = RequestMethod.GET)
 	public String findDepId(int depId, Model depModel) {
 		DepTb depTb = new DepTb();
-
 		depTb.setDepId(depId);
-
 		List<EmpTb> emps = empRepository.findByDepTb(depTb);
-
 		depModel.addAttribute("emps", emps);
-
 		return "emps/emp_list";
 	}
 
@@ -75,6 +71,9 @@ public class EmpController {
 	public String cmpleteCreateEmp(EmpForm empForm) {
 		Date now = new Date();
 		EmpTb emp = new EmpTb();
+
+		System.out.println(empForm.getEmpName());
+
 		emp.setEmpName(empForm.getEmpName());
 		emp.setEmpNameKana(empForm.getEmpNameKana());
 		emp.setBarthday(empForm.getBirthday());
@@ -91,20 +90,14 @@ public class EmpController {
 		emp.setUpdateDate(now);
 		emp.setDepTb(depRepository.getReferenceById(empForm.getDepId()));
 		emp.setEmpAdmin(empForm.getEmpAdmin());
-
 		empRepository.save(emp);
-
-
 		return "redirect:/emps/empshow/" + emp.getEmpId();
-
 	}
 
 	//社員情報編集
 	@RequestMapping("/emps/empedit/{empId}")
 	public String editEmp(@PathVariable int empId, Model empModel) {
 		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
-
 		return "emps/emp_edit";
 	}
-
 }
