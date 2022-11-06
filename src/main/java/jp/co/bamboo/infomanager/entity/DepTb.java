@@ -1,5 +1,6 @@
 package jp.co.bamboo.infomanager.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -84,15 +85,10 @@ public class DepTb {
 	public String getUpdateDate() {
 		return updateDate;
 	}
-
 	/**
 	 * @param updateDate セットする updateDate
 	 */
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
-
-
-
 }

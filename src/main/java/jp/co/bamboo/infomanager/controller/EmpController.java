@@ -72,8 +72,6 @@ public class EmpController {
 		Date now = new Date();
 		EmpTb emp = new EmpTb();
 
-		System.out.println(empForm.getEmpName());
-
 		emp.setEmpName(empForm.getEmpName());
 		emp.setEmpNameKana(empForm.getEmpNameKana());
 		emp.setBarthday(empForm.getBirthday());

@@ -1,5 +1,7 @@
 package jp.co.bamboo.infomanager.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "UserMasterTb")
-public class Login {
+public class LoginTb {
 
 	@Id
 	private Integer empId;
@@ -17,6 +19,13 @@ public class Login {
 
 	@Column
 	private String password;
+
+	@Column
+	private Date insertDate;
+
+	@Column
+	private Date updateDate;
+
 
 	/**
 	 * @return empId
