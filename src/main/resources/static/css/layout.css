@@ -57,7 +57,10 @@ button.btn {
   border-radius: 0.5rem;
 }
 
-
+a{
+	text-decoration: none;
+	color: black;
+}
 .btn--orange,
 a.btn--orange {
   color: #000;
@@ -158,5 +161,4 @@ div.formfont{
 #password{
 	margin:20px
 }
-
 

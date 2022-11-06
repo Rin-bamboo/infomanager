@@ -60,7 +60,7 @@ CREATE TABLE surrogete_key_tb(
 CREATE TABLE user_master_tb(
     emp_id      NUMBER          NOT NULL REFERENCES emp_tb(emp_id),
     login_id    VARCHAR2(60)    UNIQUE,
-    password    VARCHAR2(30)    NOT NULL,
+    password    VARCHAR2(200)    NOT NULL,
     insert_date DATE,
     update_date DATE
 );
@@ -126,6 +126,9 @@ INSERT INTO surrogete_key_tb VALUES('6',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
 INSERT INTO surrogete_key_tb VALUES('7',SYS_GUID(),SYSDATE,SYSDATE,SYSDATE);
 
 
+--ログイン情報の入力
+INSERT INTO USER_MASTER_TB VALUES('1','test1','d2d8cc4f369b340130bd2b29b8b54e918b7c260c3279176da9ccaa37c96eb71735fc97568e892dc6220bf4ae0d748edb46bd75622751556393be3f482e6f794e',sysdate,sysdate);
+
 
 --========================テーブルデータ削除
 
@@ -155,5 +158,6 @@ DROP TABLE emp_dep_tb;
 
 --サロゲートキーテーブルの削除
 DROP TABLE surrogete_key_tb;
+
 
 

@@ -6,14 +6,14 @@
 		<title>社員管理システム</title>
 	</head>
 	<body>
-		<form class = "loginform">
+		<form class = "loginform" method = "POST" action = "dologin">
 			<div id = "login">
 				<div class = "formfont">ログインID</div>
-				<input class ="logininput" type="text"/>
+				<input class ="logininput" type="text" name ="loginId"/>
 			</div>
 			<div id = "password">
 				<div class = "formfont">パスワード</div>
-				<input class ="logininput" type="password"/>
+				<input class ="logininput" type="password" name = "inputPassword"/>
 			</div>
 			<input class="btn btn--orange btn--radius" type="submit" value="ログイン" />
 		</form>

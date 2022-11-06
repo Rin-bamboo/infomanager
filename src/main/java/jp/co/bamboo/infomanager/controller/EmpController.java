@@ -100,4 +100,5 @@ public class EmpController {
 		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		return "emps/emp_edit";
 	}
+
 }
