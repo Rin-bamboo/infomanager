@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.bamboo.infomanager.entity.LoginTb;
 import jp.co.bamboo.infomanager.repository.LoginRepository;
 
 @Service
@@ -18,16 +17,17 @@ public class LoginService {
 
 	public boolean login(String loginId, String inputPassword) {
 
-		LoginTb loginTb = new LoginTb();
+
 
 		System.out.println("ログインID：" + loginId + " パスワード" + inputPassword);
 
 		//getPassword =
+		// TODO なぜか loginRepositoryがnullだよってエラー
 		loginRepository.findByLoginId(loginId);
+		//LoginTb getPassword = loginData.get(3);
 
-		String getPassword = loginTb.getPassword();
-		getPassword = "8d40d13a5677252fa51868387c572952629d703770cf17c42e8620f454a54b0cc8420eeaf296510712937ee084e6c02ff58b9b26e095201fbb7650a2f9e99b1b";
-
+		//String getPassword = loginData;
+		String getPassword= "8d40d13a5677252fa51868387c572952629d703770cf17c42e8620f454a54b0cc8420eeaf296510712937ee084e6c02ff58b9b26e095201fbb7650a2f9e99b1b";
 
 		MessageDigest sha3_512 = null;
 		try {
@@ -37,9 +37,10 @@ public class LoginService {
 			e.printStackTrace();
 		}
 		byte[] sha3_512_result = sha3_512.digest(inputPassword.getBytes());
-		System.out.println(String.format("%040x", new BigInteger(1, sha3_512_result)));
 
 		String hashPassword = String.format("%040x", new BigInteger(1, sha3_512_result));
+		System.out.println(hashPassword);
+
 		if(getPassword.equals(hashPassword)) {
 			return true;
 		}else {
