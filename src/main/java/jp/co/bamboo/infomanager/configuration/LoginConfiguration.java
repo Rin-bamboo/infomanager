@@ -10,7 +10,7 @@ public class LoginConfiguration {
 	//serviceを使うために、beanにする必要がある。
 
 	@Bean
-	LoginService loginService() {
+	LoginService loginServices() {
 		return new LoginService();
 	}
 }

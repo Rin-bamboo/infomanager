@@ -64,7 +64,8 @@ CREATE TABLE user_master_tb(
     insert_date DATE,
     update_date DATE
 );
-    
+
+DROP TABLE user_master_tb;
 
 --==================================シーケンス作成
 

@@ -55,7 +55,6 @@
 			<systemPath>${basedir}/src/main/resources/lib/ojdbc7.jar</systemPath>
 		</dependency>
 
-
 		<!-- JPA 設定コピーしたところ　ここまで============================ -->
 
 	</dependencies>

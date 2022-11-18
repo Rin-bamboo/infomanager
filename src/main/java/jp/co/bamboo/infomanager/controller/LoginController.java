@@ -5,20 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.bamboo.infomanager.repository.LoginRepository;
 import jp.co.bamboo.infomanager.service.LoginService;
 
 @Controller
 public class LoginController {
 
 	//serviceControllerとコントローラをAutowired
-	
+
+	@Autowired
+	LoginRepository loginRepository;
+
 	@Autowired
 	LoginService loginService;
 
 	/*ログインページの表示*/
 	@RequestMapping("/login")
 	public String loginPage() {
-
 		return "login";
 	}
 
@@ -33,6 +36,7 @@ public class LoginController {
 		}else {
 			return "redirect:/login";
 		}
+		/**/
 	}
 
 }
