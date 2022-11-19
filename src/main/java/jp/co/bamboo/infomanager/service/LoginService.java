@@ -20,6 +20,9 @@ public class LoginService {
 
 		System.out.println("ログインID：" + loginId + " パスワード" + inputPassword);
 
+		/* TODO ログインIDから取得したパスワードを getPassword2に代入する*/
+		loginRepository.findByLoginId(loginId);
+
 		String getPassword2= "8d40d13a5677252fa51868387c572952629d703770cf17c42e8620f454a54b0cc8420eeaf296510712937ee084e6c02ff58b9b26e095201fbb7650a2f9e99b1b";
 
 		MessageDigest sha3_512 = null;

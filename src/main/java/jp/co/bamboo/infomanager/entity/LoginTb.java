@@ -25,7 +25,8 @@ public class LoginTb {
 
 	@Column
 	private Date updateDate;
-
+	
+	
 
 	/**
 	 * @return empId
