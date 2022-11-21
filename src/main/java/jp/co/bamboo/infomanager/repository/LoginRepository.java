@@ -17,4 +17,6 @@ public interface LoginRepository extends JpaRepository<LoginTb, Integer> {
 	@Query("SELECT i.password FROM LoginTb i WHERE i.loginId = :loginId")
 	String passwordFindByLoginId(@Param("loginId") String loginId);
 
+	@Query("SELECT i.empId From LoginTb i WHERE i.loginId = :loginId")
+	Integer myIdFindByLoginId(@Param("loginId") String loginId);
 }

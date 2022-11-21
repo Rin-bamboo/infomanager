@@ -5,7 +5,7 @@
 
 	<div  id = "flexheader">
 		<h1><a id = "link" th:href="@{/}">社員一覧社員情報管理システム</a></h1>
-
+		<div th:text = "${session.surrogeteKey}"></div>
 <!-- 	デザイン的に使うか使わないのか決めるので、一時的にコメントアウト
 		<div id = "flexheadersub">
 			<a id = "link" th:href="@{/emps/findAll}">社員一覧</a>
