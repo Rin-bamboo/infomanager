@@ -25,8 +25,6 @@ public class LoginTb {
 
 	@Column
 	private Date updateDate;
-	
-	
 
 	/**
 	 * @return empId
@@ -69,6 +67,35 @@ public class LoginTb {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	/**
+	 * @return insertDate
+	 */
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+	/**
+	 * @param insertDate セットする insertDate
+	 */
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
+	}
+
+	/**
+	 * @return updateDate
+	 */
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	/**
+	 * @param updateDate セットする updateDate
+	 */
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
 
 
 }
