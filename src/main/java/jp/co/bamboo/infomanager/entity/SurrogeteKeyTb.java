@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "SurrogeteKeyTb")
-public class SurrogeteTb {
+@Table(name = "surrogeteKeyTb")
+public class SurrogeteKeyTb {
 	@Id
 	private Integer empId;
 

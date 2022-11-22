@@ -15,6 +15,7 @@ import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
+import jp.co.bamboo.infomanager.repository.SurrogetekeyRepository;
 
 @Controller
 public class EmpController {
@@ -25,6 +26,9 @@ public class EmpController {
 
 	@Autowired
 	DepRepository depRepository;
+
+	@Autowired
+	SurrogetekeyRepository surrogeteKeyRepository;
 
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
@@ -51,6 +55,13 @@ public class EmpController {
 		List<EmpTb> emps = empRepository.findByDepTb(depTb);
 		depModel.addAttribute("emps", emps);
 		return "emps/emp_list";
+	}
+	//サロゲートキー社員検索
+	@RequestMapping("/emp/{surrogeteKey}")
+	public String showEmp(@PathVariable String surrogeteKey,Model empModel) {
+		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
+		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
+		return "emps/emp_show";
 	}
 
 	//社員情報詳細表示
@@ -93,8 +104,15 @@ public class EmpController {
 	}
 
 	//社員情報編集
-	@RequestMapping("/emps/empedit/{empId}")
-	public String editEmp(@PathVariable int empId, Model empModel) {
+	@RequestMapping("/empedit/{surrogeteKey}")
+	public String editEmp(@PathVariable String surrogeteKey, Model empModel) {
+		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
+		System.out.println(empId);
+		if(empId == null) {
+			System.out.println("IF文の中");
+			/*暫定処理存在しないサロゲートキーを指定したらトップページへ遷移*/
+			return "redirect:/";
+		}
 		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		return "emps/emp_edit";
 	}

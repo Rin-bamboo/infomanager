@@ -7,6 +7,9 @@
 	margin: 0;
 	padding: 0;
 }
+#name div{
+	display:inline;
+}
 .loginform{
 	background-color:#cbf9fe;
 	padding:30px;

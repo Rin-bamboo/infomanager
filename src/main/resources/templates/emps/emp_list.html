@@ -12,7 +12,7 @@
 					<th>社員番号</th>
 					<th>社員名</th>
 					<th>社員名＜カナ＞</th>
-					<th>操作</th>
+					<th th:if="${session.adminFlg == 1}">操作</th>
 				</tr>
 				<tr th:if="${emps.size <= 0}" >
 					<td colspan=5>検索結果は0件でした</td>
@@ -22,7 +22,7 @@
 							[[${emp.empId}]] </a></td>
 					<td th:text="${emp.empName}"></td>
 					<td th:text="${emp.empNameKana}"></td>
-					<td>編集</td>
+					<td th:if="${session.adminFlg == 1}">編集</td>
 				</tr>
 			</table>
 		</main>
