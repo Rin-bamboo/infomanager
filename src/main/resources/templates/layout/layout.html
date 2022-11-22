@@ -9,7 +9,7 @@
 	<body>
 		<header th:replace="~{layout/header :: layout-header}"></header>
 		<div class = "maincontents">
-			<aside th:replace="~{layout/sidebar :: layout-sidebar}"></aside>
+			<aside th:replace="~{layout/sidebar :: layout-sidebar}" ></aside>
 			<main th:replace="${body}"></main>
 		</div>
 		<footer th:replace="~{layout/footer :: layout-footer}"></footer>

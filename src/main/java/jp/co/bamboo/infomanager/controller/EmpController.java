@@ -3,6 +3,8 @@ package jp.co.bamboo.infomanager.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class EmpController {
 
 	@Autowired
 	SurrogetekeyRepository surrogeteKeyRepository;
+
+	@Autowired
+	private HttpSession session;
 
 	//社員情報全件検索
 	@RequestMapping("/emps/findAll")
@@ -107,9 +112,10 @@ public class EmpController {
 	@RequestMapping("/empedit/{surrogeteKey}")
 	public String editEmp(@PathVariable String surrogeteKey, Model empModel) {
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
-		System.out.println(empId);
-		if(empId == null) {
-			System.out.println("IF文の中");
+
+		/*サロゲートキーの検索結果がnull または セッション情報のサロゲートキーと一致しなかったらトップエージへ遷移
+		 * （将来的にエラー画面へ遷移するようにします。）*/
+		if((empId == null || !(surrogeteKey.equals(session.getAttribute("surrogeteKey"))) && session.getAttribute("adminFlg") == "0")) {
 			/*暫定処理存在しないサロゲートキーを指定したらトップページへ遷移*/
 			return "redirect:/";
 		}

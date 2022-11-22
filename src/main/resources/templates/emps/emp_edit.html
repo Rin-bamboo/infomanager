@@ -11,7 +11,7 @@
 		<div>新規社員登録</div>
 		<form method="post" th:action="@{/emps/create/complete}">
 			<table>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>管理者</td>
 					<td><input type="checkbox" name="empAdmin" value="1" /></td>
 				</tr>
