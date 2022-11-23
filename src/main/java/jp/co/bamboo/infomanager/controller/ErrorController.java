@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrorController {
 
 
-	//社員情報全件検索
+	//エラー番号01への遷移
 	@RequestMapping("/error01")
 	public String showEmpList(Model model) {
 
