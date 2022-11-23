@@ -51,7 +51,6 @@ public class LoginService {
 		byte[] sha3_512_result = sha3_512.digest(inputPassword.getBytes());
 
 		String hashPassword = String.format("%040x", new BigInteger(1, sha3_512_result));
-		System.out.println(getPassword2 + "/"+ inputPassword +"：" + hashPassword);
 		// System.out.println(hashPassword);
 
 		if(getPassword2.equals(hashPassword)) {

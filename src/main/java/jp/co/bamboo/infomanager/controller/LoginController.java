@@ -33,9 +33,12 @@ public class LoginController {
 	/*ログインページの表示*/
 	@RequestMapping("/login")
 	public String loginPage() {
-		//暫定処理ログイン画面に飛ぶとログアウトする
-		session.invalidate();
-		return "login";
+
+		if (session.getAttribute("surrogeteKey") == null) {
+			return "login";
+		}else {
+			return "redirect:/";
+		}
 	}
 
 	/*ログインボタン押下後の表示*/

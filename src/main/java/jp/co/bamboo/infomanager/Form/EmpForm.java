@@ -1,6 +1,6 @@
 package jp.co.bamboo.infomanager.Form;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EmpForm {
 
@@ -11,7 +11,7 @@ public class EmpForm {
 	private String empNameKana;
 
 	//誕生日
-	private String birthday;
+	private Date birthday;
 
 	//電話番号
 	private String telNo;
@@ -29,7 +29,7 @@ public class EmpForm {
 	private String mailAddress;
 
 	//入社日
-	private String joinDate;
+	private Date joinDate;
 
 	//最寄りバス停
 	private String busStation;
@@ -91,14 +91,14 @@ public class EmpForm {
 	/**
 	 * @return barthday
 	 */
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
 	/**
 	 * @param barthday セットする barthday
 	 */
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -175,14 +175,14 @@ public class EmpForm {
 	/**
 	 * @return joinDate
 	 */
-	public String getJoinDate() {
+	public Date getJoinDate() {
 		return joinDate;
 	}
 
 	/**
 	 * @param joinDate セットする joinDate
 	 */
-	public void setJoinDate(String joinDate) {
+	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 

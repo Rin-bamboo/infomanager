@@ -1,6 +1,6 @@
 package jp.co.bamboo.infomanager.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ public class EmpTb {
 
 	//誕生日
 	@Column
-	private String barthday;
+	private Date barthday;
 
 	//電話番号
 	@Column
@@ -59,7 +59,7 @@ public class EmpTb {
 
 	//入社日
 	@Column
-	private String joinDate;
+	private Date joinDate;
 
 	//最寄りバス停
 	@Column
@@ -151,14 +151,14 @@ public class EmpTb {
 	/**
 	 * @return barthday
 	 */
-	public String getBarthday() {
+	public Date getBarthday() {
 		return barthday;
 	}
 
 	/**
 	 * @param barthday セットする barthday
 	 */
-	public void setBarthday(String barthday) {
+	public void setBarthday(Date barthday) {
 		this.barthday = barthday;
 	}
 
@@ -235,14 +235,14 @@ public class EmpTb {
 	/**
 	 * @return joinDate
 	 */
-	public String getJoinDate() {
+	public Date getJoinDate() {
 		return joinDate;
 	}
 
 	/**
 	 * @param joinDate セットする joinDate
 	 */
-	public void setJoinDate(String joinDate) {
+	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 

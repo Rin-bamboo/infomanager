@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-		th:replace="~{layout/layout :: layout(~{::body/content()})}">
-	<head>
-		<meta charset="UTF-8" />
-		<title>社員管理システム</title>
-	</head>
-	<body>
+	th:replace="~{layout/layout :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>社員管理システム</title>
+</head>
+<body>
 
 	<main>
-		<div>新規社員登録</div>
-		<form method="post" th:action="@{/emps/create/complete}">
+		<div>新規情報変更</div>
+		<form method="post"
+			th:action="@{/empedit/complete/} + ${session.surrogeteKey}">
 			<table>
 				<tr th:if="${session.adminFlg == 1}">
 					<td>管理者</td>
@@ -17,65 +18,74 @@
 				</tr>
 				<tr>
 					<td>部署</td>
-					<td>
-					<select name="depId">
-						<option th:each="deps: ${session.dep}"
-							th:value="${deps.depId}" th:text="${deps.depName}"></option>
-					</select>
-					</td>
+					<td><select name="depId">
+							<option th:each="deps: ${session.dep}" th:value="${deps.depId}"
+								th:text="${deps.depName}"></option>
+					</select></td>
 				</tr>
 				<tr>
 					<td>名前＜カナ＞：</td>
-					<td><input type="text" name="empNameKana" th:value = "${emp.empNameKana}" /></td>
+					<td><input type="text" name="empNameKana"
+						th:value="${emp.empNameKana}" /></td>
 				</tr>
 				<tr>
 					<td>名前：</td>
-					<td><input type="text" name="empName" th:value = "${emp.empName}" /></td>
+					<td><input type="text" name="empName"
+						th:value="${emp.empName}" /></td>
 				</tr>
 				<tr>
 					<td>誕生日：</td>
-					<td><input type="date" name="birthday" /></td>
+					<td><input type="date" name="birthday"
+						th:value="${emp.barthday}" /></td>
 				</tr>
 				<tr>
 					<td>電話番号：</td>
-					<td><input type="tel" name="telNo" /></td>
+					<td><input type="tel" name="telNo" th:value="${emp.telNo}" /></td>
 				</tr>
 				<tr>
 					<td>緊急電話番号：</td>
-					<td><input type="tel" name="emgTelNo" /></td>
+					<td><input type="tel" name="emgTelNo"
+						th:value="${emp.emgTelNo}" /></td>
 				</tr>
 				<tr>
 					<td>郵便番号：</td>
-					<td><input type="text" name="addressNo" /></td>
+					<td><input type="text" name="addressNo"
+						th:value="${emp.addressNo}" /></td>
 				</tr>
 				<tr>
 					<td>住所：</td>
-					<td><input type="text" name="address" /></td>
+					<td><input type="text" name="address"
+						th:value="${emp.address}" /></td>
 				</tr>
 				<tr>
 					<td>メールアドレス：</td>
-					<td><input type="email" name="mailAddress" /></td>
+					<td><input type="email" name="mailAddress"
+						th:value="${emp.mailAddress}" /></td>
 				</tr>
 				<tr>
 					<td>最寄りバス停：</td>
-					<td><input type="text" name="busStation" /></td>
+					<td><input type="text" name="busStation"
+						th:value="${emp.busStation}" /></td>
 				</tr>
 				<tr>
 					<td>最寄り駅：</td>
-					<td><input type="text" name="station" /></td>
+					<td><input type="text" name="station"
+						th:value="${emp.station}" /></td>
 				</tr>
 				<tr>
 					<td>コメント：</td>
-					<td><input type="text" name="discription" /></td>
+					<td><input type="text" name="discription"
+						th:value="${emp.discription}" /></td>
 				</tr>
 				<tr>
 					<td>入社日：</td>
-					<td><input type="date" name="joinDate" /></td>
+					<td><input type="date" name="joinDate"
+						th:value="${emp.joinDate}" /></td>
 				</tr>
 
 			</table>
 			<input type="submit" value="登録" />
 		</form>
 	</main>
-	</body>
+</body>
 </html>

@@ -6,17 +6,17 @@
 		<div>
 			<form th:action="@{/emps/empnamefind/}">
 				<div>社員名検索</div>
-				<input class = "logininput" type="text" name="empName" /> <input type="submit" value="検索" />
+				<input class="logininput" type="text" name="empName" /> <input
+					type="submit" value="検索" />
 			</form>
 		</div>
 		<div>
 			<form th:action="@{/emps/empdepfind/}">
 				<div>部署検索</div>
 				<select name="depId">
-					<option  th:each="deps: ${session.dep}"
-						th:value="${deps.depId}" th:text="${deps.depName}"></option>
-				</select>
-				<input type="submit" value="検索" />
+					<option th:each="deps: ${session.dep}" th:value="${deps.depId}"
+						th:text="${deps.depName}"></option>
+				</select> <input type="submit" value="検索" />
 			</form>
 		</div>
 		<div>===社員機能===</div>
@@ -25,15 +25,17 @@
 		</div>
 	</div>
 	<ul>
-		<li>社員情報</li>
+		<li><a th:href="@{/empedit/} + ${session.surrogeteKey}">社員情報編集</a></li>
 		<li>勤怠管理</li>
 		<li>有給申請</li>
 		<li>資格</li>
 		<li>目標シート</li>
 		<li>スキルシート</li>
 	</ul>
-	<div>===管理者機能===</div>
-	<div>
-		<a th:href="@{/emps/create/emp}">新規登録</a>
+	<div th:if="${session.adminFlg == 1}">
+		<div>===管理者機能===</div>
+		<div>
+			<a th:href="@{/emps/create/emp}">新規登録</a>
+		</div>
 	</div>
 </aside>

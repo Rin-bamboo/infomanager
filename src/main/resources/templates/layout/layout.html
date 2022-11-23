@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(body)">
-	<head>
-		<meta charset="UTF-8" />
-		<link th:href="@{/css/layout.css}" rel = "stylesheet"/>
-		<title>社員管理システム</title>
-	</head>
+<head>
+<meta charset="UTF-8" />
+<link th:href="@{/css/layout.css}" rel="stylesheet" />
+<title>社員管理システム</title>
+</head>
 
-	<body>
-		<header th:replace="~{layout/header :: layout-header}"></header>
-		<div class = "maincontents">
-			<aside th:replace="~{layout/sidebar :: layout-sidebar}" ></aside>
-			<main th:replace="${body}"></main>
+<body>
+	<header th:replace="~{layout/header :: layout-header}"></header>
+	<div class="maincontents">
+		<div th:if="${session.surrogeteKey != null}">
+			<aside th:replace="~{layout/sidebar :: layout-sidebar}"></aside>
 		</div>
-		<footer th:replace="~{layout/footer :: layout-footer}"></footer>
-	</body>
+		<main th:replace="${body}"></main>
+	</div>
+	<footer th:replace="~{layout/footer :: layout-footer}"></footer>
+</body>
 
 </html>

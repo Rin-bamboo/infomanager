@@ -6,7 +6,7 @@
 	<div  id = "flexheader">
 		<h1><a id = "link" th:href="@{/}">社員一覧社員情報管理システム</a></h1>
 
-		<div th:if="${session.adminFlg == null}">
+		<div th:if="${session.surrogeteKey != null}">
 			<div id = "name">ようこそ <div th:text = "${session.userName}"></div> さん！</div>
 			<a th:href = "@{/logout}">ログアウト</a>
 		</div>
