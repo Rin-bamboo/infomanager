@@ -3,6 +3,8 @@ package jp.co.bamboo.infomanager.Form;
 import java.sql.Date;
 
 public class EmpForm {
+	//
+	private Integer empId;
 
 	//社員名
 	private String empName;
@@ -324,6 +326,20 @@ public class EmpForm {
 	 */
 	public void setDepId(Integer depId) {
 		this.depId = depId;
+	}
+
+	/**
+	 * @return empId
+	 */
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	/**
+	 * @param empId セットする empId
+	 */
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 
 
