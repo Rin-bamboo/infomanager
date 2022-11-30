@@ -32,12 +32,11 @@ public class EmpService {
 		Integer admflg = empForm.getEmpAdmin();;
 		Date joinDate = empForm.getJoinDate();
 		DepTb depData = depRepository.getReferenceById(empForm.getDepId());
-		EmpTb empData = empRepository.getReferenceById(empForm.getEmpId());
 
 		if(session.getAttribute("adminFlg") == null) {
 			admflg = null;
-			joinDate = empData.getJoinDate();
-			depData = depRepository.getReferenceById(empData.getEmpId());
+			//Date = empData.getJoinDate();
+			depData = depRepository.getReferenceById(emp.getEmpId());
 
 		}else if(session.getAttribute("adminFlg") == "1") {
 		}
@@ -45,11 +44,12 @@ public class EmpService {
 		//管理者の一般社員で実行するアップデート文を変更
 		if(session.getAttribute("adminFlg") == null) {
 			empRepository.SetEmpData
-			(empForm.getEmpName(), empForm.getEmpNameKana(), empForm.getTelNo(),
-					empForm.getEmgTelNo(), empForm.getAddressNo(),
-					empForm.getAddress(), empForm.getBusStation(),
-					empForm.getStation(), empForm.getMailAddress(),
-					empForm.getDiscription(),now, empData.getEmpId());
+			(empForm.getEmpName(), empForm.getEmpNameKana(),
+					empForm.getTelNo(), empForm.getEmgTelNo(),
+					empForm.getAddressNo(), empForm.getAddress(),
+					empForm.getMailAddress(), empForm.getBusStation(),
+					empForm.getStation(), empForm.getDiscription(),
+					now, emp.getEmpId());
 
 		}else if(session.getAttribute("adminFlg") == "1") {
 			emp.setEmpName(empForm.getEmpName());
@@ -70,11 +70,6 @@ public class EmpService {
 			emp.setEmpAdmin(admflg);
 			empRepository.save(emp);
 		}
-
-
-
-
-
 		return emp.getEmpId();
 	}
 }

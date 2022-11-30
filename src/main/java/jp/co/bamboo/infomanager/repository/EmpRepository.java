@@ -55,13 +55,15 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 	 */
 	@Modifying
 	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, "
-			+ "TelNo = :TelNo,empEmgTelNo = :empEmgTelNo, AddressNo = :AddressNo, Address = :Address, mailAddress = :Address, "
+			+ "telNo = :telNo,emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, mailAddress = :mailAddress, "
 			+ "busStation = :busStation, station = :station, discription = :discription, "
 			+ "updateDate = :updateDate WHERE empId = :empId ")
 	void SetEmpData(@Param("empName") String empName, @Param("empNameKana") String empNameKana,
-			@Param("TelNo") String TelNo,@Param("empEmgTelNo") String empEmgTelNo, @Param("AddressNo") String AddressNo,
-			@Param("Address") String Address,@Param("busStation") String busStation, @Param("station") String station,
-			@Param("mailAddress") String mailAddress,@Param("discription") String discription,
+			@Param("telNo") String TelNo, @Param("emgTelNo") String emgTelNo,
+			@Param("addressNo") String AddressNo,
+			@Param("address") String Address, @Param("mailAddress") String mailAddress,
+			@Param("busStation") String busStation, @Param("station") String station,
+			@Param("discription") String discription,
 			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
 
 }
