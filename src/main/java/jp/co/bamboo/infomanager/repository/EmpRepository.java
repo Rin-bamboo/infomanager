@@ -66,4 +66,34 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 			@Param("discription") String discription,
 			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
 
+	/**
+	 * 管理者のテーブル更新
+	 * @param empName
+	 * @param empNameKana
+	 * @param TelNo
+	 * @param emgTelNo
+	 * @param AddressNo
+	 * @param Address
+	 * @param mailAddress
+	 * @param busStation
+	 * @param station
+	 * @param discription
+	 * @param updateDate
+	 * @param empId
+	 */
+	@Modifying
+	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, birthday = :birthday, "
+			+ "telNo = :telNo, emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, "
+			+ "mailAddress = :mailAddress, depId = :depId, joinDate = :joinDate, busStation = :busStation,"
+			+ "station = :station WHERE empId = :empId")
+	void SetEmpDataAdmin(
+			@Param("empName") String empName, @Param("empNameKana") String empNameKana,
+			@Param("birthday") Date birthday,
+			@Param("telNo") String TelNo, @Param("emgTelNo") String emgTelNo,
+			@Param("addressNo") String AddressNo,
+			@Param("address") String Address, @Param("mailAddress") String mailAddress,
+			@Param("depId") DepTb depId,
+			@Param("busStation") String busStation, @Param("station") String station,
+			@Param("discription") String discription,
+			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
 }

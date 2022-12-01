@@ -52,6 +52,8 @@ public class EmpService {
 					now, emp.getEmpId());
 
 		}else if(session.getAttribute("adminFlg") == "1") {
+
+		else {
 			emp.setEmpName(empForm.getEmpName());
 			emp.setEmpNameKana(empForm.getEmpNameKana());
 			emp.setBarthday(empForm.getBirthday());
