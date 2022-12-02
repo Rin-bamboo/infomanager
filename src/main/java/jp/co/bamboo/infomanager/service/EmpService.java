@@ -28,9 +28,9 @@ public class EmpService {
 	public Integer EmpCreate(EmpForm empForm,EmpTb emp){
 
 		Date now = new Date(System.currentTimeMillis());
-
 		Integer admflg = empForm.getEmpAdmin();;
 		Date joinDate = empForm.getJoinDate();
+
 		DepTb depData = depRepository.getReferenceById(empForm.getDepId());
 
 		if(session.getAttribute("adminFlg") == null) {
@@ -41,8 +41,10 @@ public class EmpService {
 		}else if(session.getAttribute("adminFlg") == "1") {
 		}
 
-		//管理者の一般社員で実行するアップデート文を変更
-		if(session.getAttribute("adminFlg") == null) {
+		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
+		if(session.getAttribute("adminFlg") != "1") {
+			System.out.println("社員ID "+emp.getEmpId());
+
 			empRepository.SetEmpData
 			(empForm.getEmpName(), empForm.getEmpNameKana(),
 					empForm.getTelNo(), empForm.getEmgTelNo(),
@@ -53,7 +55,7 @@ public class EmpService {
 
 		}else if(session.getAttribute("adminFlg") == "1") {
 
-		else {
+		}else {
 			emp.setEmpName(empForm.getEmpName());
 			emp.setEmpNameKana(empForm.getEmpNameKana());
 			emp.setBarthday(empForm.getBirthday());

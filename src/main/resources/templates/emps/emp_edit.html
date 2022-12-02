@@ -10,13 +10,13 @@
 	<main>
 		<div>新規情報変更</div>
 		<form method="post"
-			th:action="@{/empedit/complete/} + ${session.surrogeteKey}">
+			th:action="@{/empedit/conf}">
 			<table>
 				<tr th:if="${session.adminFlg == 1}">
 					<td>管理者</td>
 					<td><input type="checkbox" name="empAdmin" value="1" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>部署</td>
 					<td><select name="depId">
 							<option th:each="deps: ${session.dep}" th:value="${deps.depId}"
@@ -33,7 +33,7 @@
 					<td><input type="text" name="empName"
 						th:value="${emp.empName}" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>誕生日：</td>
 					<td><input type="date" name="birthday"
 						th:value="${emp.barthday}" /></td>
@@ -77,7 +77,7 @@
 					<td><input type="text" name="discription"
 						th:value="${emp.discription}" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>入社日：</td>
 					<td><input type="date" name="joinDate"
 						th:value="${emp.joinDate}" /></td>

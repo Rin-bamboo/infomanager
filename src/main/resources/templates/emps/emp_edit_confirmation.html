@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="~{layout/layout :: layout(~{::body/content()})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>社員管理システム</title>
+</head>
+<body>
+<main>
+	<div>社員情報</div>
+	<table>
+		<tr>
+			<th></th>
+			<th>変更前</th>
+			<th></th>
+			<th>変更後</th>
+		</tr>
+		<tr>
+			<td>社員名（カナ）</td>
+			<td th:text=${oldemp.empNameKana}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.empNameKana}></td>
+		</tr>
+		<tr>
+			<td>社員名</td>
+			<td th:text=${oldemp.empName}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.empName}></td>
+		</tr>
+		<tr>
+			<td>電話番号</td>
+			<td th:text=${oldemp.telNo}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.telNo}></td>
+		</tr>
+		<tr>
+			<td>緊急連絡先</td>
+			<td th:text=${oldemp.emgTelNo}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.emgTelNo}></td>
+		</tr>
+		<tr>
+			<td>郵便番号</td>
+			<td th:text=${oldemp.addressNo}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.addressNo}></td>
+		</tr>
+		<tr>
+			<td>住所</td>
+			<td th:text=${oldemp.address}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.address}></td>
+		</tr>
+		<tr>
+			<td>メールアドレス</td>
+			<td th:text=${oldemp.mailAddress}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.mailAddress}></td>
+		</tr>
+		<tr>
+			<td>最寄りバス停</td>
+			<td th:text=${oldemp.busStation}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.busStation}></td>
+		</tr>
+		<tr>
+			<td>最寄り駅</td>
+			<td th:text=${oldemp.station}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.station}></td>
+		</tr>
+		<tr>
+			<td>コメント</td>
+			<td th:text=${oldemp.discription}></td>
+			<td>⇒</td>
+			<td th:text=${newemp.discription}></td>
+		</tr>
+	</table>
+
+	<form method="post"
+		th:action="@{/empedit/complete/} + ${session.surrogeteKey}">
+		<table>
+			<tr>
+				<td><input type="hidden" name="empNameKana"
+					th:value="${newemp.empNameKana}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="empName"
+					th:value="${newemp.empName}" /></td>
+			</tr>
+			<tr th:if="${session.adminFlg == 1}">
+				<td><input type="hidden" name="birthday"
+					th:value="${newemp.barthday}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="telNo" th:value="${newemp.telNo}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="emgTelNo"
+					th:value="${newemp.emgTelNo}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="addressNo"
+					th:value="${newemp.addressNo}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="address"
+					th:value="${newemp.address}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="mailAddress"
+					th:value="${newemp.mailAddress}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="busStation"
+					th:value="${newemp.busStation}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="station"
+					th:value="${newemp.station}" /></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="discription"
+					th:value="${newemp.discription}" /></td>
+			</tr>
+			<tr th:if="${session.adminFlg == 1}">
+				<td><input type="hidden" name="joinDate"
+					th:value="${newemp.joinDate}" /></td>
+			</tr>
+
+		</table>
+		<input type="submit" value="登録" />
+	</form>
+</main>
+</body>
+</html>

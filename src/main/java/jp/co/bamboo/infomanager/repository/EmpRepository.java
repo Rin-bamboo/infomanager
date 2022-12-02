@@ -80,7 +80,7 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 	 * @param discription
 	 * @param updateDate
 	 * @param empId
-	 */
+	 *
 	@Modifying
 	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, birthday = :birthday, "
 			+ "telNo = :telNo, emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, "
@@ -96,4 +96,5 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 			@Param("busStation") String busStation, @Param("station") String station,
 			@Param("discription") String discription,
 			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
+	*/
 }
