@@ -114,7 +114,6 @@ public class EmpController {
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
 	public String confUpdateEmp(Model empModel,EmpForm empForm) {
-
 		String surrogeteKey = (String) session.getAttribute("surrogeteKey");
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 
@@ -128,11 +127,13 @@ public class EmpController {
 	//社員情報編集完了
 	@RequestMapping(path = "empedit/complete/{surrogeteKey}", method = RequestMethod.POST)
 	public String cmpleteUpdateEmp(@PathVariable String surrogeteKey, EmpForm empForm) {
-		/* TODO empFormの中身がなぜか空っぽになっている。 */
-		System.out.println("Controller：" + empForm.getDepId());
 
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
+		System.out.println("社員IDは・・・・" + empId);
 		EmpTb emp = empRepository.getReferenceById(empId);
+
+
+
 		Integer updateEmpId = empService.EmpCreate(empForm,emp);
 
 		return "redirect:/emps/empshow/" + updateEmpId;

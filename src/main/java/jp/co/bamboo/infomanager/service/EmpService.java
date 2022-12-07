@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.bamboo.infomanager.Form.EmpForm;
-import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
@@ -26,20 +25,13 @@ public class EmpService {
 	private HttpSession session;
 
 	public Integer EmpCreate(EmpForm empForm,EmpTb emp){
-
 		Date now = new Date(System.currentTimeMillis());
-		Integer admflg = empForm.getEmpAdmin();;
 		Date joinDate = empForm.getJoinDate();
+		Integer admflg = empForm.getEmpAdmin();;
 
-		DepTb depData = depRepository.getReferenceById(empForm.getDepId());
+		System.out.println("DepId：" + empForm.getDepId());
 
-		if(session.getAttribute("adminFlg") == null) {
-			admflg = null;
-			//Date = empData.getJoinDate();
-			depData = depRepository.getReferenceById(emp.getEmpId());
-
-		}else if(session.getAttribute("adminFlg") == "1") {
-		}
+		//DepTb depData = depRepository.getReferenceById(empForm.getDepId());
 
 		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
 		if(session.getAttribute("adminFlg") != "1") {
@@ -55,7 +47,7 @@ public class EmpService {
 
 		}else if(session.getAttribute("adminFlg") == "1") {
 
-		}else {
+		}/*else {
 			emp.setEmpName(empForm.getEmpName());
 			emp.setEmpNameKana(empForm.getEmpNameKana());
 			emp.setBarthday(empForm.getBirthday());
@@ -73,7 +65,7 @@ public class EmpService {
 			emp.setDepTb(depData);
 			emp.setEmpAdmin(admflg);
 			empRepository.save(emp);
-		}
+		}*/
 		return emp.getEmpId();
 	}
 }
