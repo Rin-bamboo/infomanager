@@ -37,7 +37,6 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 	@Query("SELECT i.empAdmin FROM EmpTb i WHERE i.empId = :empId")
 	Integer empAdminFindByLoginId(@Param("empId") Integer empId);
 
-	//
 	/**
 	 *一般ユーザーのデータ更新
 	 * @param empName		社員名
@@ -55,7 +54,8 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 	 */
 	@Modifying
 	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, "
-			+ "telNo = :telNo,emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, mailAddress = :mailAddress, "
+			+ "telNo = :telNo,emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, "
+			+ "mailAddress = :mailAddress, "
 			+ "busStation = :busStation, station = :station, discription = :discription, "
 			+ "updateDate = :updateDate WHERE empId = :empId ")
 	void SetEmpData(@Param("empName") String empName, @Param("empNameKana") String empNameKana,
@@ -66,35 +66,35 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 			@Param("discription") String discription,
 			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
 
-	/**
-	 * 管理者のテーブル更新
-	 * @param empName
-	 * @param empNameKana
-	 * @param TelNo
-	 * @param emgTelNo
-	 * @param AddressNo
-	 * @param Address
-	 * @param mailAddress
-	 * @param busStation
-	 * @param station
-	 * @param discription
-	 * @param updateDate
-	 * @param empId
-	 *
+/**
+ *
+ * @param empName
+ * @param empNameKana
+ * @param telNo
+ * @param emgTelNo
+ * @param addressNo
+ * @param address
+ * @param mailAddress
+ * @param depId
+ * @param busStation
+ * @param station
+ * @param empAdmin
+ * @param updateDate
+ * @param empId
+ */
 	@Modifying
-	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, birthday = :birthday, "
+	@Query("UPDATE EmpTb u SET empName = :empName, empNameKana = :empNameKana, "
 			+ "telNo = :telNo, emgTelNo = :emgTelNo, addressNo = :addressNo, address = :address, "
-			+ "mailAddress = :mailAddress, depId = :depId, joinDate = :joinDate, busStation = :busStation,"
-			+ "station = :station WHERE empId = :empId")
+			+ "mailAddress = :mailAddress, depId = :depId, busStation = :busStation,"
+			+ "station = :station, empAdmin = :empAdmin, updateDate = :updateDate WHERE empId = :empId")
 	void SetEmpDataAdmin(
 			@Param("empName") String empName, @Param("empNameKana") String empNameKana,
-			@Param("birthday") Date birthday,
-			@Param("telNo") String TelNo, @Param("emgTelNo") String emgTelNo,
-			@Param("addressNo") String AddressNo,
-			@Param("address") String Address, @Param("mailAddress") String mailAddress,
-			@Param("depId") DepTb depId,
+			@Param("telNo") String telNo, @Param("emgTelNo") String emgTelNo,
+			@Param("addressNo") String addressNo,
+			@Param("address") String address, @Param("mailAddress") String mailAddress,
+			@Param("depId") Integer depId,
 			@Param("busStation") String busStation, @Param("station") String station,
-			@Param("discription") String discription,
+			@Param("empAdmin") Integer empAdmin,
 			@Param("updateDate") Date updateDate, @Param("empId") Integer empId);
-	*/
+/**/
 }

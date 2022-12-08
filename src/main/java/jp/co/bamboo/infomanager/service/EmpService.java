@@ -26,12 +26,6 @@ public class EmpService {
 
 	public Integer EmpCreate(EmpForm empForm,EmpTb emp){
 		Date now = new Date(System.currentTimeMillis());
-		Date joinDate = empForm.getJoinDate();
-		Integer admflg = empForm.getEmpAdmin();;
-
-		System.out.println("DepId：" + empForm.getDepId());
-
-		//DepTb depData = depRepository.getReferenceById(empForm.getDepId());
 
 		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
 		if(session.getAttribute("adminFlg") != "1") {
@@ -46,6 +40,14 @@ public class EmpService {
 					now, emp.getEmpId());
 
 		}else if(session.getAttribute("adminFlg") == "1") {
+			//DepTb depData = depRepository.getReferenceById(empForm.getDepId());
+			Integer admflg = empForm.getEmpAdmin();
+			empRepository.SetEmpDataAdmin(
+					empForm.getEmpName(), empForm.getEmpNameKana(), empForm.getTelNo(),
+					empForm.getEmgTelNo(), empForm.getAddressNo(), empForm.getAddress(),
+					empForm.getMailAddress(), empForm.getDepId(),
+					empForm.getBusStation(), empForm.getStation(),
+					admflg,now, emp.getEmpId());
 
 		}/*else {
 			emp.setEmpName(empForm.getEmpName());
