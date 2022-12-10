@@ -94,17 +94,18 @@ public class EmpController {
 		return "redirect:/emps/empshow/" + empId;
 	}
 
-
 	//社員情報編集
 	@RequestMapping("/empedit/{surrogeteKey}")
 	public String editEmp(@PathVariable String surrogeteKey, Model empModel) {
 
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 
-		/*サロゲートキーの検索結果がnull または セッション情報のサロゲートキーと一致しなかったらトップエージへ遷移
-		 * （将来的にエラー画面へ遷移するようにします。）*/
+		//編集IDの編集
+		session.setAttribute("editSurrogeteKey", surrogeteKey);
+
+		/*サロゲートキーの検索結果がnull または セッション情報のサロゲートキーと一致しなかったらエラー画面へ遷移*/
 		if((empId == null || !(surrogeteKey.equals(session.getAttribute("surrogeteKey"))) && session.getAttribute("adminFlg") != "1")) {
-			/*暫定処理存在しないサロゲートキーを指定したらトップページへ遷移*/
+			/*暫定処理存在しないサロゲートキーを指定したらエラー画面へ遷移*/
 			return "redirect:/error01";
 		}
 		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
@@ -114,7 +115,7 @@ public class EmpController {
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
 	public String confUpdateEmp(Model empModel,EmpForm empForm) {
-		String surrogeteKey = (String) session.getAttribute("surrogeteKey");
+		String surrogeteKey = (String) session.getAttribute("editSurrogeteKey");
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 
 		empModel.addAttribute("newemp", empForm);
@@ -129,10 +130,7 @@ public class EmpController {
 	public String cmpleteUpdateEmp(@PathVariable String surrogeteKey, EmpForm empForm) {
 
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
-		System.out.println("社員IDは・・・・" + empId);
 		EmpTb emp = empRepository.getReferenceById(empId);
-
-
 
 		Integer updateEmpId = empService.EmpCreate(empForm,emp);
 

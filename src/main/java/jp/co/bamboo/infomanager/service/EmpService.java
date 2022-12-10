@@ -27,9 +27,12 @@ public class EmpService {
 	public Integer EmpCreate(EmpForm empForm,EmpTb emp){
 		Date now = new Date(System.currentTimeMillis());
 
+		System.out.println("データ確認empForm: " + empForm);
+		System.out.println("データ確認emp: " + emp);
+
 		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
 		if(session.getAttribute("adminFlg") != "1") {
-			System.out.println("社員ID "+emp.getEmpId());
+			//一般社員の情報変更
 
 			empRepository.SetEmpData
 			(empForm.getEmpName(), empForm.getEmpNameKana(),
@@ -40,6 +43,7 @@ public class EmpService {
 					now, emp.getEmpId());
 
 		}else if(session.getAttribute("adminFlg") == "1") {
+			//管理者用の社員情報変更
 			//DepTb depData = depRepository.getReferenceById(empForm.getDepId());
 			Integer admflg = empForm.getEmpAdmin();
 			empRepository.SetEmpDataAdmin(
@@ -50,24 +54,24 @@ public class EmpService {
 					admflg,now, emp.getEmpId());
 
 		}/*else {
-			emp.setEmpName(empForm.getEmpName());
-			emp.setEmpNameKana(empForm.getEmpNameKana());
-			emp.setBarthday(empForm.getBirthday());
-			emp.setTelNo(empForm.getTelNo());
-			emp.setEmgTelNo(empForm.getEmgTelNo());
-			emp.setAddressNo(empForm.getAddressNo());
-			emp.setAddress(empForm.getAddress());
-			emp.setMailAddress(empForm.getMailAddress());
-			emp.setBusStation(empForm.getBusStation());
-			emp.setStation(empForm.getStation());
-			emp.setJoinDate(joinDate);
-			emp.setDiscription(empForm.getDiscription());
-			//emp.setInsertDate(now);
-			emp.setUpdateDate(now);
-			emp.setDepTb(depData);
-			emp.setEmpAdmin(admflg);
-			empRepository.save(emp);
-		}*/
+		emp.setEmpName(empForm.getEmpName());
+		emp.setEmpNameKana(empForm.getEmpNameKana());
+		emp.setBarthday(empForm.getBirthday());
+		emp.setTelNo(empForm.getTelNo());
+		emp.setEmgTelNo(empForm.getEmgTelNo());
+		emp.setAddressNo(empForm.getAddressNo());
+		emp.setAddress(empForm.getAddress());
+		emp.setMailAddress(empForm.getMailAddress());
+		emp.setBusStation(empForm.getBusStation());
+		emp.setStation(empForm.getStation());
+		emp.setJoinDate(joinDate);
+		emp.setDiscription(empForm.getDiscription());
+		//emp.setInsertDate(now);
+		emp.setUpdateDate(now);
+		emp.setDepTb(depData);
+		emp.setEmpAdmin(admflg);
+		empRepository.save(emp);
+	}*/
 		return emp.getEmpId();
 	}
 }

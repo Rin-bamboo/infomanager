@@ -8,7 +8,6 @@ import jp.co.bamboo.infomanager.entity.SurrogeteKeyTb;
 
 public interface SurrogetekeyRepository extends JpaRepository<SurrogeteKeyTb, Integer> {
 
-
 	@Query("SELECT i.surrogeteKey FROM SurrogeteKeyTb i WHERE i.empId = :empId")
 	String surrogeteKeyFindempId(@Param("empId") Integer empId);
 

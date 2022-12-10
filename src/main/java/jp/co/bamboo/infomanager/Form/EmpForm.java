@@ -91,14 +91,14 @@ public class EmpForm {
 	}
 
 	/**
-	 * @return barthday
+	 * @return birthday
 	 */
 	public Date getBirthday() {
 		return birthday;
 	}
 
 	/**
-	 * @param barthday セットする barthday
+	 * @param birthday セットする birthday
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;

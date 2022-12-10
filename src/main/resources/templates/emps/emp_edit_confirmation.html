@@ -9,7 +9,7 @@
 	<main>
 		<div>社員情報</div>
 		<form method="post"
-			th:action="@{/empedit/complete/} + ${session.surrogeteKey}">
+			th:action="@{/empedit/complete/} + ${session.editSurrogeteKey}">
 			<table>
 				<tr>
 					<th></th>
@@ -81,7 +81,6 @@
 
 			<input type="hidden" name="empNameKana" th:value="${newemp.empNameKana}" />
 			<input type="hidden" name="empName" th:value="${newemp.empName}" />
-			<input th:if="${session.adminFlg == 1}" type="hidden" name="birthday" th:value="${newemp.barthday}" />
 			<input type="hidden" name="telNo" th:value="${newemp.telNo}" />
 			<input type="hidden" name="emgTelNo" th:value="${newemp.emgTelNo}" />
 			<input type="hidden" name="addressNo" th:value="${newemp.addressNo}" />
@@ -92,6 +91,21 @@
 			<input type="hidden" name="discription" th:value="${newemp.discription}" />
 			<input th:if="${session.adminFlg == 1}" type="hidden" name="joinDate" th:value="${newemp.joinDate}" />
 			<input type="submit" value="登録" />
+		</form>
+		<form method="post"
+			th:action="@{/empedit/} + ${session.editSurrogeteKey}">
+			<input type="hidden" name="empNameKana" th:value="${newemp.empNameKana}" />
+			<input type="hidden" name="empName" th:value="${newemp.empName}" />
+			<input type="hidden" name="telNo" th:value="${newemp.telNo}" />
+			<input type="hidden" name="emgTelNo" th:value="${newemp.emgTelNo}" />
+			<input type="hidden" name="addressNo" th:value="${newemp.addressNo}" />
+			<input type="hidden" name="address" th:value="${newemp.address}" />
+			<input type="hidden" name="mailAddress" th:value="${newemp.mailAddress}" />
+			<input type="hidden" name="busStation" th:value="${newemp.busStation}" />
+			<input type="hidden" name="station" th:value="${newemp.station}" />
+			<input type="hidden" name="discription" th:value="${newemp.discription}" />
+			<input th:if="${session.adminFlg == 1}" type="hidden" name="joinDate" th:value="${newemp.joinDate}" />
+			<input type="submit" value="戻る" />
 		</form>
 	</main>
 </body>

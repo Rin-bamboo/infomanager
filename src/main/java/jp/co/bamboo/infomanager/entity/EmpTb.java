@@ -30,7 +30,7 @@ public class EmpTb {
 
 	//誕生日
 	@Column
-	private Date barthday;
+	private Date birthday;
 
 	//電話番号
 	@Column
@@ -149,17 +149,17 @@ public class EmpTb {
 	}
 
 	/**
-	 * @return barthday
+	 * @return birthday
 	 */
-	public Date getBarthday() {
-		return barthday;
+	public Date getBirthday() {
+		return birthday;
 	}
 
 	/**
-	 * @param barthday セットする barthday
+	 * @param birthday セットする birthday
 	 */
-	public void setBarthday(Date barthday) {
-		this.barthday = barthday;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	/**

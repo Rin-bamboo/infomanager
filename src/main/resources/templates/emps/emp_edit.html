@@ -8,7 +8,7 @@
 <body>
 
 	<main>
-		<div>新規情報変更</div>
+		<div>情報変更</div>
 		<form method="post"
 			th:action="@{/empedit/conf}">
 			<table>
@@ -36,7 +36,7 @@
 				<tr th:if="${session.adminFlg == 1}">
 					<td>誕生日：</td>
 					<td><input type="date" name="birthday"
-						th:value="${emp.barthday}" /></td>
+						th:value="${emp.birthday}" /></td>
 				</tr>
 				<tr>
 					<td>電話番号：</td>
@@ -85,6 +85,7 @@
 			</table>
 			<input type="submit" value="登録" />
 		</form>
+		<a th:href="@{/}">戻る</a>
 	</main>
 </body>
 </html>
