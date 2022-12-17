@@ -84,7 +84,7 @@ public class EmpService {
 			SurrogeteKeyTb surrogeteKeyTb = new SurrogeteKeyTb();
 			//surrogeteKeyTb = surrogeteKeyRepository.getReferenceById(empId);
 			surrogeteKeyService.SurrogeteKeyCreate(emp.getEmpId(), surrogeteKeyTb);
-
+			
 		}
 
 		session.removeAttribute("editEmp");
