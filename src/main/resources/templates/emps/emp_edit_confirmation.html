@@ -9,7 +9,7 @@
 	<main>
 		<div>社員情報</div>
 		<form method="post"
-			th:action="@{/empedit/complete/} + ${session.editSurrogeteKey}">
+			th:action="@{/empedit/complete/} + ${session.editEmp}">
 			<table>
 				<tr>
 					<th></th>
@@ -93,7 +93,7 @@
 			<input type="submit" value="登録" />
 		</form>
 		<form method="post"
-			th:action="@{/empedit/} + ${session.editSurrogeteKey}">
+			th:action="@{/empedit/} + ${session.editEmp}">
 			<input type="hidden" name="empNameKana" th:value="${newemp.empNameKana}" />
 			<input type="hidden" name="empName" th:value="${newemp.empName}" />
 			<input type="hidden" name="telNo" th:value="${newemp.telNo}" />

@@ -22,7 +22,7 @@
 							[[${emp.empId}]] </a></td>
 					<td th:text="${emp.empName}"></td>
 					<td th:text="${emp.empNameKana}"></td>
-					<td th:if="${session.adminFlg == 1}"><a th:href = "@{/empedit/} + ${session.surrogeteKey}">編集</a></td>
+					<td th:if="${session.adminFlg == 1}"><a th:href = "@{/empedit/} + ${emp.empId}">編集</a></td>
 				</tr>
 			</table>
 		</main>

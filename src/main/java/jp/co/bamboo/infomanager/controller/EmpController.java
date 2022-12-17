@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.bamboo.infomanager.Form.EmpForm;
 import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
+import jp.co.bamboo.infomanager.entity.SurrogeteKeyTb;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
 import jp.co.bamboo.infomanager.repository.SurrogetekeyRepository;
 import jp.co.bamboo.infomanager.service.EmpService;
+import jp.co.bamboo.infomanager.service.SurrogeteKeyService;
 
 @Controller
 public class EmpController {
@@ -34,6 +36,9 @@ public class EmpController {
 
 	@Autowired
 	EmpService empService;
+
+	@Autowired
+	SurrogeteKeyService surrogeteKeyService;
 
 	@Autowired
 	private HttpSession session;
@@ -64,9 +69,10 @@ public class EmpController {
 		depModel.addAttribute("emps", emps);
 		return "emps/emp_list";
 	}
+
 	//サロゲートキー社員検索
 	@RequestMapping("/emp/{surrogeteKey}")
-	public String showEmp(@PathVariable String surrogeteKey,Model empModel) {
+	public String showEmp(@PathVariable String surrogeteKey, Model empModel) {
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		return "emps/emp_show";
@@ -89,33 +95,55 @@ public class EmpController {
 	@RequestMapping(path = "/emps/create/complete", method = RequestMethod.POST)
 	public String cmpleteCreateEmp(EmpForm empForm) {
 		EmpTb emp = new EmpTb();
-		Integer empId = empService.EmpCreate(empForm,emp);
-
+		Integer empId = empService.EmpCreate(empForm, emp);
 		return "redirect:/emps/empshow/" + empId;
 	}
 
 	//社員情報編集
-	@RequestMapping("/empedit/{surrogeteKey}")
-	public String editEmp(@PathVariable String surrogeteKey, Model empModel) {
+	@RequestMapping("/empedit/{empData}")
+	public String editEmp(@PathVariable String empData, Model empModel) {
+		Integer empId;
+		boolean admflg = session.getAttribute("adminFlg").equals(1);
 
-		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
+		if (admflg && !(empData.equals(session.getAttribute("surrogeteKey")))) {
+			/*管理者且つ編集先が自分じゃないときはは社員番号で検索し、サロゲートキーを取得する*/
+			try {
+				empId = empRepository.empIdFindByEmpId(Integer.parseInt(empData));
+			} catch (Exception e) {
+				return "redirect:/error01";
+			}
+			empData = surrogeteKeyRepository.surrogeteKeyFindempId(empId);
+		} else {
+			/*一般社員はempDataサロゲートキーからデータ取得*/
+			empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(empData);
+		}
+		if (empData == null) {
+			SurrogeteKeyTb surrogeteKeyTb = new SurrogeteKeyTb();
+			empData = surrogeteKeyService.SurrogeteKeyCreate(empId, surrogeteKeyTb);
+		}
+
 
 		//編集IDの編集
-		session.setAttribute("editSurrogeteKey", surrogeteKey);
+		session.setAttribute("editEmp", empData);
 
-		/*サロゲートキーの検索結果がnull または セッション情報のサロゲートキーと一致しなかったらエラー画面へ遷移*/
-		if((empId == null || !(surrogeteKey.equals(session.getAttribute("surrogeteKey"))) && session.getAttribute("adminFlg") != "1")) {
+		/*セッション情報のサロゲートキーと一致しなかったらエラー画面へ遷移 管理者画面はバイパス*/
+		if ((empId == null || !(empData.equals(session.getAttribute("surrogeteKey")))
+				&& !(admflg))) {
 			/*暫定処理存在しないサロゲートキーを指定したらエラー画面へ遷移*/
 			return "redirect:/error01";
+		} /* else if (admflg) {
+
+			empModel.addAttribute("emp", empRepository.findById(empId));
+			}*/ else {
+			empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		}
-		empModel.addAttribute("emp", empRepository.getReferenceById(empId));
 		return "emps/emp_edit";
 	}
 
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
-	public String confUpdateEmp(Model empModel,EmpForm empForm) {
-		String surrogeteKey = (String) session.getAttribute("editSurrogeteKey");
+	public String confUpdateEmp(Model empModel, EmpForm empForm) {
+		String surrogeteKey = (String) session.getAttribute("editEmp");
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 
 		empModel.addAttribute("newemp", empForm);
@@ -124,7 +152,6 @@ public class EmpController {
 		return "emps/emp_edit_confirmation";
 	}
 
-
 	//社員情報編集完了
 	@RequestMapping(path = "empedit/complete/{surrogeteKey}", method = RequestMethod.POST)
 	public String cmpleteUpdateEmp(@PathVariable String surrogeteKey, EmpForm empForm) {
@@ -132,7 +159,7 @@ public class EmpController {
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 		EmpTb emp = empRepository.getReferenceById(empId);
 
-		Integer updateEmpId = empService.EmpCreate(empForm,emp);
+		Integer updateEmpId = empService.EmpCreate(empForm, emp);
 
 		return "redirect:/emps/empshow/" + updateEmpId;
 	}

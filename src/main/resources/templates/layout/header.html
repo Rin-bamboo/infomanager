@@ -4,7 +4,8 @@
 <header th:fragment="layout-header">
 
 	<div  id = "flexheader">
-		<h1><a id = "link" th:href="@{/}">社員一覧社員情報管理システム</a></h1>
+		<h1 th:if="${session.surrogeteKey != null}"><a id = "link" th:href="@{/}">社員一覧社員情報管理システム</a></h1>
+		<h1 th:if="${session.surrogeteKey == null}">社員一覧社員情報管理システム</h1>
 
 		<div th:if="${session.surrogeteKey != null}">
 			<div id = "name">ようこそ <div th:text = "${session.userName}"></div> さん！</div>

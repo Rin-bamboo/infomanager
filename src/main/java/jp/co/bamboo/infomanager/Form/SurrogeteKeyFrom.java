@@ -1,28 +1,17 @@
-package jp.co.bamboo.infomanager.entity;
+package jp.co.bamboo.infomanager.Form;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class SurrogeteKeyFrom {
 
-@Entity
-@Table(name = "surrogeteKeyTb")
-public class SurrogeteKeyTb {
-	@Id
 	private Integer empId;
 
-	@Column
 	private String surrogeteKey;
 
-	@Column
 	private Date issueDate;
 
-	@Column
 	private Date insertDate;
 
-	@Column
 	private Date updateDate;
 
 	/**

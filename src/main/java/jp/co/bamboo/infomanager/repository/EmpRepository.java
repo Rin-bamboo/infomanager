@@ -29,6 +29,10 @@ public interface EmpRepository extends JpaRepository<EmpTb, Integer> {
 	//SQL<SELECT * FROM emp_tb WHERE dep_id = '?';>
 	List<EmpTb> findByDepTb(DepTb depTb);
 
+	//社員IDの取得
+	@Query("SELECT i.empId FROM EmpTb i WHERE i.empId = :empId")
+	Integer empIdFindByEmpId(@Param("empId") Integer empId);
+
 	//社員名の取得
 	@Query("SELECT i.empName FROM EmpTb i WHERE i.empId = :empId")
 	String empNameFindByLoginId(@Param("empId") Integer empId);

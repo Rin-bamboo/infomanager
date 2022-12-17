@@ -7,19 +7,26 @@
 </head>
 <body>
 	<main>
+		<h2>ユーザー機能</h2>
 		<div id="flexmain">
 			<a id="flexsub" th:href="@{/emps/findAll}"> 社員一覧 </a> <a id="flexsub"
 				th:href="@{/empedit/} + ${session.surrogeteKey}"> 社員情報変更 </a>
+			<!--
 			<div id="flexsub">申請関係</div>
 			<div id="flexsub">項目４</div>
+			 -->
 		</div>
 		<div th:if="${session.adminFlg == 1}">
 			<h2>管理者機能</h2>
 			<div id="flexmain">
-				<div id="flexsub">社員情報管理</div>
+				<div id="flexsub">
+					<a th:href="@{/emps/findAll}">社員新規登録</a>
+				</div>
+				<!--
 				<div id="flexsub">承認関係</div>
 				<div id="flexsub">項目３</div>
 				<div id="flexsub">項目４</div>
+				 -->
 			</div>
 		</div>
 	</main>

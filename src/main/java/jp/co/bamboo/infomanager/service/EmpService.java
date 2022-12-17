@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.bamboo.infomanager.Form.EmpForm;
+import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
+import jp.co.bamboo.infomanager.entity.SurrogeteKeyTb;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
+import jp.co.bamboo.infomanager.repository.SurrogetekeyRepository;
 
 @Service
 public class EmpService {
@@ -22,27 +25,31 @@ public class EmpService {
 	DepRepository depRepository;
 
 	@Autowired
+	SurrogetekeyRepository surrogeteKeyRepository;
+
+	@Autowired
+	SurrogeteKeyService surrogeteKeyService;
+
+	@Autowired
 	private HttpSession session;
 
-	public Integer EmpCreate(EmpForm empForm,EmpTb emp){
+	public Integer EmpCreate(EmpForm empForm, EmpTb emp) {
+		System.out.println(session.getAttribute("editEmp"));
 		Date now = new Date(System.currentTimeMillis());
-
-		System.out.println("データ確認empForm: " + empForm);
-		System.out.println("データ確認emp: " + emp);
-
+		boolean admIfflg = session.getAttribute("adminFlg").equals("1");
 		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
-		if(session.getAttribute("adminFlg") != "1") {
+		if (!(admIfflg) && !(session.getAttribute("editEmp") == null)) {
 			//一般社員の情報変更
-
-			empRepository.SetEmpData
-			(empForm.getEmpName(), empForm.getEmpNameKana(),
+			System.out.println("社員編集");
+			empRepository.SetEmpData(empForm.getEmpName(), empForm.getEmpNameKana(),
 					empForm.getTelNo(), empForm.getEmgTelNo(),
 					empForm.getAddressNo(), empForm.getAddress(),
 					empForm.getMailAddress(), empForm.getBusStation(),
 					empForm.getStation(), empForm.getDiscription(),
 					now, emp.getEmpId());
 
-		}else if(session.getAttribute("adminFlg") == "1") {
+		} else if (admIfflg && !(session.getAttribute("editEmp") == null)) {
+			System.out.println("管理者編集");
 			//管理者用の社員情報変更
 			//DepTb depData = depRepository.getReferenceById(empForm.getDepId());
 			Integer admflg = empForm.getEmpAdmin();
@@ -51,27 +58,37 @@ public class EmpService {
 					empForm.getEmgTelNo(), empForm.getAddressNo(), empForm.getAddress(),
 					empForm.getMailAddress(), empForm.getDepId(),
 					empForm.getBusStation(), empForm.getStation(),
-					admflg,now, emp.getEmpId());
+					admflg, now, emp.getEmpId());
 
-		}/*else {
-		emp.setEmpName(empForm.getEmpName());
-		emp.setEmpNameKana(empForm.getEmpNameKana());
-		emp.setBarthday(empForm.getBirthday());
-		emp.setTelNo(empForm.getTelNo());
-		emp.setEmgTelNo(empForm.getEmgTelNo());
-		emp.setAddressNo(empForm.getAddressNo());
-		emp.setAddress(empForm.getAddress());
-		emp.setMailAddress(empForm.getMailAddress());
-		emp.setBusStation(empForm.getBusStation());
-		emp.setStation(empForm.getStation());
-		emp.setJoinDate(joinDate);
-		emp.setDiscription(empForm.getDiscription());
-		//emp.setInsertDate(now);
-		emp.setUpdateDate(now);
-		emp.setDepTb(depData);
-		emp.setEmpAdmin(admflg);
-		empRepository.save(emp);
-	}*/
+		} else {
+			System.out.println("新規登録");
+			DepTb depData = depRepository.getReferenceById(empForm.getDepId());
+			emp.setEmpName(empForm.getEmpName());
+			emp.setEmpNameKana(empForm.getEmpNameKana());
+			emp.setBirthday(empForm.getBirthday());
+			emp.setTelNo(empForm.getTelNo());
+			emp.setEmgTelNo(empForm.getEmgTelNo());
+			emp.setAddressNo(empForm.getAddressNo());
+			emp.setAddress(empForm.getAddress());
+			emp.setMailAddress(empForm.getMailAddress());
+			emp.setBusStation(empForm.getBusStation());
+			emp.setStation(empForm.getStation());
+			emp.setJoinDate(empForm.getJoinDate());
+			emp.setDiscription(empForm.getDiscription());
+			//emp.setInsertDate(now);
+			emp.setUpdateDate(now);
+			emp.setDepTb(depData);
+			emp.setEmpAdmin(empForm.getEmpAdmin());
+			empRepository.save(emp);
+
+			SurrogeteKeyTb surrogeteKeyTb = new SurrogeteKeyTb();
+			//surrogeteKeyTb = surrogeteKeyRepository.getReferenceById(empId);
+			surrogeteKeyService.SurrogeteKeyCreate(emp.getEmpId(), surrogeteKeyTb);
+
+		}
+
+		session.removeAttribute("editEmp");
+
 		return emp.getEmpId();
 	}
 }
