@@ -1,4 +1,4 @@
-package jp.co.bamboo.infomanager.Form;
+package jp.co.bamboo.infomanager.form;
 
 import java.sql.Date;
 
