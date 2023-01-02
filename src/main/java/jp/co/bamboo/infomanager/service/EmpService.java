@@ -7,10 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.bamboo.infomanager.Form.EmpForm;
 import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.entity.SurrogeteKeyTb;
+import jp.co.bamboo.infomanager.form.EmpForm;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
 import jp.co.bamboo.infomanager.repository.SurrogetekeyRepository;
@@ -36,7 +36,10 @@ public class EmpService {
 	public Integer EmpCreate(EmpForm empForm, EmpTb emp) {
 		System.out.println(session.getAttribute("editEmp"));
 		Date now = new Date(System.currentTimeMillis());
-		boolean admIfflg = session.getAttribute("adminFlg").equals("1");
+		boolean admIfflg = false;
+		if (session.getAttribute("adminFlg") != null) {
+			admIfflg = session.getAttribute("adminFlg").equals("1");
+		}
 		//管理者の一般社員で実行するアップデート文を変更 アドミンフラグが１じゃなかったら
 		if (!(admIfflg) && !(session.getAttribute("editEmp") == null)) {
 			//一般社員の情報変更
@@ -84,7 +87,7 @@ public class EmpService {
 			SurrogeteKeyTb surrogeteKeyTb = new SurrogeteKeyTb();
 			//surrogeteKeyTb = surrogeteKeyRepository.getReferenceById(empId);
 			surrogeteKeyService.SurrogeteKeyCreate(emp.getEmpId(), surrogeteKeyTb);
-			
+
 		}
 
 		session.removeAttribute("editEmp");

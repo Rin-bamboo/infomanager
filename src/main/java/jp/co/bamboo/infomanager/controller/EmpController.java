@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.bamboo.infomanager.Form.EmpForm;
 import jp.co.bamboo.infomanager.entity.DepTb;
 import jp.co.bamboo.infomanager.entity.EmpTb;
 import jp.co.bamboo.infomanager.entity.SurrogeteKeyTb;
+import jp.co.bamboo.infomanager.form.EmpForm;
 import jp.co.bamboo.infomanager.repository.DepRepository;
 import jp.co.bamboo.infomanager.repository.EmpRepository;
 import jp.co.bamboo.infomanager.repository.SurrogetekeyRepository;
@@ -103,7 +103,10 @@ public class EmpController {
 	@RequestMapping("/empedit/{empData}")
 	public String editEmp(@PathVariable String empData, Model empModel) {
 		Integer empId;
-		boolean admflg = session.getAttribute("adminFlg").equals(1);
+		boolean admflg = false;
+		if (session.getAttribute("adminFlg") != null){
+			admflg = session.getAttribute("adminFlg").equals(1);
+		}
 
 		if (admflg && !(empData.equals(session.getAttribute("surrogeteKey")))) {
 			/*管理者且つ編集先が自分じゃないときはは社員番号で検索し、サロゲートキーを取得する*/
