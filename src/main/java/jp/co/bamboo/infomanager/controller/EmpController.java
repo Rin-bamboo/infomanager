@@ -3,10 +3,13 @@ package jp.co.bamboo.infomanager.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,10 +104,10 @@ public class EmpController {
 
 	//社員情報編集
 	@RequestMapping("/empedit/{empData}")
-	public String editEmp(@PathVariable String empData, Model empModel) {
+	public String editEmp(@PathVariable String empData, Model empModel, @ModelAttribute EmpForm empForm) {
 		Integer empId;
 		boolean admflg = false;
-		if (session.getAttribute("adminFlg") != null){
+		if (session.getAttribute("adminFlg") != null) {
 			admflg = session.getAttribute("adminFlg").equals(1);
 		}
 
@@ -125,7 +128,6 @@ public class EmpController {
 			empData = surrogeteKeyService.SurrogeteKeyCreate(empId, surrogeteKeyTb);
 		}
 
-
 		//編集IDの編集
 		session.setAttribute("editEmp", empData);
 
@@ -145,7 +147,12 @@ public class EmpController {
 
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
-	public String confUpdateEmp(Model empModel, EmpForm empForm) {
+	public String confUpdateEmp(Model empModel, @Valid @ModelAttribute EmpForm empForm, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "emps/emp_edit";
+		}
+
 		String surrogeteKey = (String) session.getAttribute("editEmp");
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 

@@ -57,6 +57,13 @@
 
 		<!-- JPA 設定コピーしたところ　ここまで============================ -->
 
+		<!-- 入力チェックを利用するための設定 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!-- ここまで -->
+
 	</dependencies>
 
 	<build>
