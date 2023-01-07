@@ -7,8 +7,8 @@
 </head>
 <body>
 	<main>
-		<div>社員新規登録</div>
-		<form method="post" th:action="@{/emps/create/complete}"
+		<div>社員情報追加・編集</div>
+		<form method="post" th:action="@{/empedit/conf}"
 			th:object="${empForm}">
 			<ul>
 				<li th:each="error:${#fields.detailedErrors()}">

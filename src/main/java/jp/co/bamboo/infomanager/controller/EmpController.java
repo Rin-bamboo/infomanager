@@ -97,9 +97,11 @@ public class EmpController {
 	//社員新規登録
 	@RequestMapping(path = "/emps/create/complete", method = RequestMethod.POST)
 	public String cmpleteCreateEmp(@Valid @ModelAttribute EmpForm empForm,BindingResult result) {
+
 		if (result.hasErrors()) {
 			return "emps/emp_create";
 		}
+
 		EmpTb emp = new EmpTb();
 		Integer empId = empService.EmpCreate(empForm, emp);
 		return "redirect:/emps/empshow/" + empId;
@@ -146,14 +148,14 @@ public class EmpController {
 			}*/ else {
 			empModel.addAttribute("empForm", empRepository.getReferenceById(empId));
 		}
-		return "emps/emp_create";
+		return "emps/emp_edit";
 	}
 
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
 	public String confUpdateEmp(Model empModel, @Valid @ModelAttribute EmpForm empForm, BindingResult result) {
 		if (result.hasErrors()) {
-			return "emps/emp_create";
+			return "emps/emp_edit";
 		}
 
 		String surrogeteKey = (String) session.getAttribute("editEmp");
