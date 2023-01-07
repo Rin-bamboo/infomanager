@@ -2,32 +2,43 @@ package jp.co.bamboo.infomanager.form;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class EmpForm {
-	//
+	//社員ID
 	private Integer empId;
 
 	//社員名
+	@NotBlank
 	private String empName;
 
 	//社員名（カナ）
+	@NotBlank
 	private String empNameKana;
 
 	//誕生日
+	@NotNull
 	private Date birthday;
 
 	//電話番号
+	@NotBlank
 	private String telNo;
 
 	//緊急電話番号
+	@NotBlank
 	private String emgTelNo;
 
 	//郵便番号
+	@NotBlank
 	private String addressNo;
 
 	//住所
+	@NotBlank
 	private String address;
 
 	//メールアドレス
+	@NotBlank
 	private String mailAddress;
 
 	//入社日
@@ -62,6 +73,7 @@ public class EmpForm {
 
 	//部署ID
 	private Integer depId;
+
 	/**
 	 * @return empName
 	 */
@@ -341,7 +353,5 @@ public class EmpForm {
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
-
-
 
 }

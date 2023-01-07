@@ -6,16 +6,23 @@
 <title>社員管理システム</title>
 </head>
 <body>
-
 	<main>
-		<div>新規社員登録</div>
-		<form method="post" th:action="@{/emps/create/complete}">
+		<div>社員新規登録</div>
+		<form method="post" th:action="@{/emps/create/complete}"
+			th:object="${empForm}">
+			<ul>
+				<li th:each="error:${#fields.detailedErrors()}">
+				 	<span th:text="${error.message}"></span>
+				 </li>
+			</ul>
+
 			<table>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>管理者</td>
-					<td><input type="checkbox" name="empAdmin" value="1" /></td>
+					<td><input type="checkbox" name="empAdmin" value="1"
+						th:checked="*{empAdmin == 1}" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>部署</td>
 					<td><select name="depId">
 							<option th:each="deps: ${session.dep}" th:value="${deps.depId}"
@@ -24,56 +31,61 @@
 				</tr>
 				<tr>
 					<td>名前＜カナ＞：</td>
-					<td><input type="text" name="empNameKana" /></td>
+					<td><input type="text" name="empNameKana"
+						th:value="*{empNameKana}" /></td>
 				</tr>
 				<tr>
 					<td>名前：</td>
-					<td><input type="text" name="empName" /></td>
+					<td><input type="text" name="empName" th:value="*{empName}" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>誕生日：</td>
-					<td><input type="date" name="birthday" /></td>
+					<td><input type="date" name="birthday" th:value="*{birthday}" /></td>
 				</tr>
 				<tr>
 					<td>電話番号：</td>
-					<td><input type="tel" name="telNo" /></td>
+					<td><input type="tel" name="telNo" th:value="*{telNo}" /></td>
 				</tr>
 				<tr>
 					<td>緊急電話番号：</td>
-					<td><input type="tel" name="emgTelNo" /></td>
+					<td><input type="tel" name="emgTelNo" th:value="*{emgTelNo}" /></td>
 				</tr>
 				<tr>
 					<td>郵便番号：</td>
-					<td><input type="text" name="addressNo" /></td>
+					<td><input type="text" name="addressNo"
+						th:value="*{addressNo}" /></td>
 				</tr>
 				<tr>
 					<td>住所：</td>
-					<td><input type="text" name="address" /></td>
+					<td><input type="text" name="address" th:value="*{address}" /></td>
 				</tr>
 				<tr>
 					<td>メールアドレス：</td>
-					<td><input type="email" name="mailAddress" /></td>
+					<td><input type="email" name="mailAddress"
+						th:value="*{mailAddress}" /></td>
 				</tr>
 				<tr>
 					<td>最寄りバス停：</td>
-					<td><input type="text" name="busStation" /></td>
+					<td><input type="text" name="busStation"
+						th:value="*{busStation}" /></td>
 				</tr>
 				<tr>
 					<td>最寄り駅：</td>
-					<td><input type="text" name="station" /></td>
+					<td><input type="text" name="station" th:value="*{station}" /></td>
 				</tr>
 				<tr>
 					<td>コメント：</td>
-					<td><input type="text" name="discription" /></td>
+					<td><input type="text" name="discription"
+						th:value="*{discription}" /></td>
 				</tr>
-				<tr>
+				<tr th:if="${session.adminFlg == 1}">
 					<td>入社日：</td>
-					<td><input type="date" name="joinDate" /></td>
+					<td><input type="date" name="joinDate" th:value="*{joinDate}" /></td>
 				</tr>
-
 			</table>
 			<input type="submit" value="登録" />
 		</form>
+		<a th:href="@{/}">戻る</a>
 	</main>
 </body>
 </html>

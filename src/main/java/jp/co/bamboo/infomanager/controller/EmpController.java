@@ -3,10 +3,13 @@ package jp.co.bamboo.infomanager.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -87,13 +90,18 @@ public class EmpController {
 
 	//社員新規登録画面表示
 	@RequestMapping("/emps/create/emp")
-	public String createEmp() {
+	public String createEmp(@ModelAttribute EmpForm empForm) {
 		return "emps/emp_create";
 	}
 
 	//社員新規登録
 	@RequestMapping(path = "/emps/create/complete", method = RequestMethod.POST)
-	public String cmpleteCreateEmp(EmpForm empForm) {
+	public String cmpleteCreateEmp(@Valid @ModelAttribute EmpForm empForm,BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "emps/emp_create";
+		}
+
 		EmpTb emp = new EmpTb();
 		Integer empId = empService.EmpCreate(empForm, emp);
 		return "redirect:/emps/empshow/" + empId;
@@ -101,10 +109,11 @@ public class EmpController {
 
 	//社員情報編集
 	@RequestMapping("/empedit/{empData}")
-	public String editEmp(@PathVariable String empData, Model empModel) {
+	public String editEmp(@PathVariable String empData, Model empModel, @ModelAttribute EmpForm empForm) {
 		Integer empId;
 		boolean admflg = false;
-		if (session.getAttribute("adminFlg") != null){
+
+		if (session.getAttribute("adminFlg") != null) {
 			admflg = session.getAttribute("adminFlg").equals(1);
 		}
 
@@ -125,7 +134,6 @@ public class EmpController {
 			empData = surrogeteKeyService.SurrogeteKeyCreate(empId, surrogeteKeyTb);
 		}
 
-
 		//編集IDの編集
 		session.setAttribute("editEmp", empData);
 
@@ -138,14 +146,18 @@ public class EmpController {
 
 			empModel.addAttribute("emp", empRepository.findById(empId));
 			}*/ else {
-			empModel.addAttribute("emp", empRepository.getReferenceById(empId));
+			empModel.addAttribute("empForm", empRepository.getReferenceById(empId));
 		}
 		return "emps/emp_edit";
 	}
 
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
-	public String confUpdateEmp(Model empModel, EmpForm empForm) {
+	public String confUpdateEmp(Model empModel, @Valid @ModelAttribute EmpForm empForm, BindingResult result) {
+		if (result.hasErrors()) {
+			return "emps/emp_edit";
+		}
+
 		String surrogeteKey = (String) session.getAttribute("editEmp");
 		Integer empId = surrogeteKeyRepository.empIdFindBySurrogeteKey(surrogeteKey);
 

@@ -35,10 +35,6 @@ public class SurrogeteKeyService {
 		surrogeteKeyTb.setInsertDate(now);
 		surrogeteKeyTb.setUpdateDate(now);
 
-
-
-		System.out.println("ここまで来てるよ　セーブ前");
-
 		surrogeteKeyRepository.save(surrogeteKeyTb);
 
 		String surrogeteKey = surrogeteKeyRepository.surrogeteKeyFindempId(empId);
