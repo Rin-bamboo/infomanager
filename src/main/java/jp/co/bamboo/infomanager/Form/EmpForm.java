@@ -3,6 +3,7 @@ package jp.co.bamboo.infomanager.form;
 import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class EmpForm {
 	//社員ID
@@ -17,6 +18,7 @@ public class EmpForm {
 	private String empNameKana;
 
 	//誕生日
+	@NotNull
 	private Date birthday;
 
 	//電話番号
