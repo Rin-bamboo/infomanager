@@ -90,13 +90,16 @@ public class EmpController {
 
 	//社員新規登録画面表示
 	@RequestMapping("/emps/create/emp")
-	public String createEmp() {
+	public String createEmp(@ModelAttribute EmpForm empForm) {
 		return "emps/emp_create";
 	}
 
 	//社員新規登録
 	@RequestMapping(path = "/emps/create/complete", method = RequestMethod.POST)
-	public String cmpleteCreateEmp(EmpForm empForm) {
+	public String cmpleteCreateEmp(@Valid @ModelAttribute EmpForm empForm,BindingResult result) {
+		if (result.hasErrors()) {
+			return "emps/emp_create";
+		}
 		EmpTb emp = new EmpTb();
 		Integer empId = empService.EmpCreate(empForm, emp);
 		return "redirect:/emps/empshow/" + empId;
@@ -107,8 +110,6 @@ public class EmpController {
 	public String editEmp(@PathVariable String empData, Model empModel, @ModelAttribute EmpForm empForm) {
 		Integer empId;
 		boolean admflg = false;
-
-		System.out.println("編集画面へ遷移");
 
 		if (session.getAttribute("adminFlg") != null) {
 			admflg = session.getAttribute("adminFlg").equals(1);
@@ -145,16 +146,14 @@ public class EmpController {
 			}*/ else {
 			empModel.addAttribute("empForm", empRepository.getReferenceById(empId));
 		}
-		return "emps/emp_edit";
+		return "emps/emp_create";
 	}
 
 	//更新確認画面
 	@RequestMapping(path = "empedit/conf")
 	public String confUpdateEmp(Model empModel, @Valid @ModelAttribute EmpForm empForm, BindingResult result) {
-		System.out.println("入力チェック" + result.hasErrors());
-
 		if (result.hasErrors()) {
-			return "emps/emp_edit";
+			return "emps/emp_create";
 		}
 
 		String surrogeteKey = (String) session.getAttribute("editEmp");
