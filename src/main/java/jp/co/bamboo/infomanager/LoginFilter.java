@@ -29,11 +29,7 @@ public class LoginFilter implements Filter{
 		} else {
 			//URLがログイン画面じゃなかったら
 			HttpSession session = httpRequest.getSession();
-
 			String surrogetekey = (String) session.getAttribute("surrogeteKey");
-
-			System.out.println("サロゲートキー" + surrogetekey);
-
 			if (surrogetekey == null) {
 				//セッションのログインIDがnull（ログインしていない状態）だったら
 				HttpServletResponse httpResponse = (HttpServletResponse) response;
