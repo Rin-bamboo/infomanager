@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class EmpForm {
 	//社員ID
@@ -11,10 +12,12 @@ public class EmpForm {
 
 	//社員名
 	@NotBlank
+	@Size(max = 30)
 	private String empName;
 
 	//社員名（カナ）
 	@NotBlank
+	@Size(max = 60)
 	private String empNameKana;
 
 	//誕生日
@@ -42,6 +45,7 @@ public class EmpForm {
 	private String mailAddress;
 
 	//入社日
+	@NotNull
 	private Date joinDate;
 
 	//最寄りバス停

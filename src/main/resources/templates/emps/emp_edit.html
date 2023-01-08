@@ -11,9 +11,8 @@
 		<form method="post" th:action="@{/empedit/conf}"
 			th:object="${empForm}">
 			<ul>
-				<li th:each="error:${#fields.detailedErrors()}">
-				 	<span th:text="${error.message}"></span>
-				 </li>
+				<li th:each="error:${#fields.detailedErrors()}"><span
+					th:text="${error.message}"></span></li>
 			</ul>
 
 			<table>
@@ -41,6 +40,11 @@
 				<tr th:if="${session.adminFlg == 1}">
 					<td>誕生日：</td>
 					<td><input type="date" name="birthday" th:value="*{birthday}" /></td>
+				</tr>
+				<tr th:if="${session.adminFlg != 1}">
+					<td>誕生日：</td>
+					<td><input type="date" name="birthday" th:value="*{birthday}"
+						readonly /></td>
 				</tr>
 				<tr>
 					<td>電話番号：</td>
@@ -81,6 +85,9 @@
 				<tr th:if="${session.adminFlg == 1}">
 					<td>入社日：</td>
 					<td><input type="date" name="joinDate" th:value="*{joinDate}" /></td>
+				</tr>
+				<tr th:if="${session.adminFlg != 1}">
+					<td><input type="hidden" name="joinDate" th:value="*{joinDate}" /></td>
 				</tr>
 			</table>
 			<input type="submit" value="登録" />
