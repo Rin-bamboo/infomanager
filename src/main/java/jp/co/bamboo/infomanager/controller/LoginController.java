@@ -31,26 +31,27 @@ public class LoginController {
 	HttpSession session;
 
 	/*ログインページの表示*/
-	@RequestMapping("/login")
-	public String loginPage() {
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	public String loginPage(){
 
-		if (session.getAttribute("surrogeteKey") == null) {
-			return "login";
-		}else {
+		if (session.getAttribute("surrogeteKey") != null) {
 			return "redirect:/";
+		}else {
+			return "login";
 		}
 	}
 
 	/*ログインボタン押下後の表示*/
-	@RequestMapping(path = "/dologin" ,method = RequestMethod.POST)
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public String logIn(String loginId, String inputPassword, HttpSession session) {
+		System.out.println("ログイン処理");
 		/*loginServiceでログイン処理を実施*/
-		if (loginService.login(loginId,inputPassword)){
+		if (loginService.login(loginId, inputPassword)) {
 			return "redirect:/";
-		}else {
+		} else {
 			return "redirect:/login";
 		}
-		/**/
+
 	}
 
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)

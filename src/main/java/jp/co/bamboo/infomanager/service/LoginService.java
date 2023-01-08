@@ -68,6 +68,7 @@ public class LoginService {
 			//管理者フラグの登録
 			session.setAttribute("adminFlg", adminFlg);
 
+
 			return true;
 		}else {
 			return false;
